@@ -1,5 +1,5 @@
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/install
-export STOW_FOLDERS="bin,fish,kitty,nvim,tmux"
+export STOW_FOLDERS="bin,brew,fish,kitty,nvim,tmux"
 
 pushd $HOME/.dotfiles
 
