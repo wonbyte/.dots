@@ -1,0 +1,6 @@
+fisher.fish
+fish_plugins
+fish_variables
+_nvm*.fish
+nvm.fish
+packer_compiled.lua
