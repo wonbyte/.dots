@@ -1,6 +1,12 @@
+# fish
 fisher.fish
 fish_plugins
 fish_variables
 _nvm*.fish
 nvm.fish
+
+# nvim
 packer_compiled.lua
+
+# binaries
+kubens
