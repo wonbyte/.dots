@@ -107,26 +107,12 @@ lspconfig.sumneko_lua.setup({
   },
 })
 
--- C/C++
--- lspconfig.clangd.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   handlers = handlers,
---   cmd = {
---     "clangd",
---     "--background-index",
---     "--suggest-missing-includes",
---     "--clang-tidy",
---     "--header-insertion=iwyu",
---   },
--- })
-
 -- Rust
--- lspconfig.rust_analyzer.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   handlers = handlers,
--- })
+lspconfig.rust_analyzer.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = handlers,
+})
 
 -- Go
 lspconfig.gopls.setup({
