@@ -1,123 +1,14 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data")
-    .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({
-      "git",
-      "clone",
-      "--depth",
-      "1",
-      "https://github.com/wbthomason/packer.nvim",
-      install_path,
-    })
-    vim.cmd([[packadd packer.nvim]])
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-return require("packer").startup(function(use)
-  use("wbthomason/packer.nvim")
-
-  use("neovim/nvim-lspconfig")
-
-  -- Mason
-  use({
-    "williamboman/mason.nvim",
-    requires = { "williamboman/mason-lspconfig.nvim" },
-    config = function()
-      require("config.mason")
-    end,
-  })
-
-  -- Autopairs
-  use({
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
-  })
-
-  -- Cmp
-  use({
-    "hrsh7th/nvim-cmp",
-    requires = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" },
-      { "hrsh7th/vim-vsnip-integ" },
-      { "rust-lang/vscode-rust" },
-      { "golang/vscode-go" },
-    },
-    config = function()
-      require("config.cmp")
-    end,
-  })
-
-  -- Treesitter
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    config = function()
-      require("config.treesitter")
-    end,
-  })
-
-  use("nvim-treesitter/nvim-treesitter-textobjects")
-
-  -- Telescope
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("config.telescope")
-    end,
-  })
-
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
-  -- Lualine
-  use({
-    "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("config.lualine")
-    end,
-  })
-
-  -- Fidget
-  use({
-    "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup({})
-    end,
-  })
-
-  -- Lightbulb
-  use({
-    "kosayoda/nvim-lightbulb",
-    requires = "antoinemadec/FixCursorHold.nvim",
-    config = function()
-      require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
-    end,
-  })
-
-  -- Tokyonight
-  use({
-    "folke/tokyonight.nvim",
-    config = function()
-      require("config.tokyonight")
-    end,
-  })
-
-  if packer_bootstrap then
-    require("packer").sync()
-  end
-end)
+require("lazy").setup("plugins")

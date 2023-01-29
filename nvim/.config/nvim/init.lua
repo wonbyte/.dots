@@ -1,11 +1,11 @@
+-- Settings
+require("settings")
+
 -- Plugins
 require("plugins")
 
 -- Lsp
 require("lsp")
-
--- Settings
-require("settings")
 
 -- Keymappings
 require("keymappings")
