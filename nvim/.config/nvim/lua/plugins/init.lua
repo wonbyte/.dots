@@ -25,9 +25,7 @@ return {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
+    config = true,
   },
 
   -- Cmp
@@ -84,9 +82,7 @@ return {
   -- Fidget
   {
     "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup({})
-    end,
+    config = true,
   },
 
   -- Lightbulb
