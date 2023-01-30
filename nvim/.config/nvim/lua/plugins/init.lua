@@ -1,7 +1,4 @@
 return {
-  -- LSP config
-  "neovim/nvim-lspconfig",
-
   -- Tokyonight
   {
     "folke/tokyonight.nvim",
@@ -12,6 +9,9 @@ return {
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
+
+  -- LSP config
+  "neovim/nvim-lspconfig",
 
   -- Mason
   {
