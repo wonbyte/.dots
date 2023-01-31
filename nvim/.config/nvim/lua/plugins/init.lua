@@ -22,32 +22,6 @@ return {
     end,
   },
 
-  -- Autopairs
-  {
-    "windwp/nvim-autopairs",
-    config = true,
-  },
-
-  -- Cmp
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" },
-      { "hrsh7th/vim-vsnip-integ" },
-      { "rust-lang/vscode-rust" },
-      { "golang/vscode-go" },
-    },
-    config = function()
-      require("config.cmp")
-    end,
-  },
-
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -68,7 +42,38 @@ return {
     end,
   },
 
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  -- Telescope FZF
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
+
+  -- Autopairs
+  {
+    "windwp/nvim-autopairs",
+    config = true,
+  },
+
+  -- Cmp
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
+      { "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-vsnip" },
+      { "hrsh7th/vim-vsnip" },
+      { "hrsh7th/vim-vsnip-integ" },
+      { "rust-lang/vscode-rust" },
+      { "golang/vscode-go" },
+    },
+    config = function()
+      require("config.cmp")
+    end,
+  },
 
   -- Lualine
   {
