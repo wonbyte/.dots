@@ -9,5 +9,8 @@ nvm.fish
 packer_compiled.lua
 .nvimlog
 
-# Homebrew
+# homebrew
 Brewfile.lock.json
+
+# kubens
+kubens
