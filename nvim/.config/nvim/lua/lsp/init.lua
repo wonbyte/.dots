@@ -80,7 +80,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 -- Lua
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
   on_attach = function(client, bufnr)
     -- format with stylua
     client.server_capabilities.document_formatting = false
