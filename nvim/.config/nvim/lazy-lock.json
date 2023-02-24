@@ -14,8 +14,8 @@
   "nvim-autopairs": { "branch": "master", "commit": "6a5faeabdbcc86cfbf1561ae430a451a72126e81" },
   "nvim-cmp": { "branch": "main", "commit": "7a3b1e76f74934b12fda82158237c6ad8bfd3d40" },
   "nvim-lightbulb": { "branch": "master", "commit": "56b9ce31ec9d09d560fe8787c0920f76bc208297" },
-  "nvim-lspconfig": { "branch": "master", "commit": "69e2fe3d638566a812c39bc4ea1980f7b833e2fc" },
-  "nvim-treesitter": { "branch": "master", "commit": "f8595b13bff62d5c64d54840e16678b9ad843620" },
+  "nvim-lspconfig": { "branch": "master", "commit": "62856b20751b748841b0f3ec5a10b1e2f6a6dbc9" },
+  "nvim-treesitter": { "branch": "master", "commit": "b401b7423d18c78371c5ff1a5f8d3c14292b2047" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "2f3583001e2bf793480f38cf0d055571787b0259" },
   "nvim-web-devicons": { "branch": "master", "commit": "4709a504d2cd2680fb511675e64ef2790d491d36" },
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
@@ -25,6 +25,6 @@
   "tokyonight.nvim": { "branch": "main", "commit": "a0abe53df53616d13da327636cb0bcac3ea7f5af" },
   "vim-vsnip": { "branch": "master", "commit": "8dde8c0ef10bb1afdbb301e2bd7eb1c153dd558e" },
   "vim-vsnip-integ": { "branch": "master", "commit": "1cf89903f12777b90dd79eb4b3d7fbc0b9a254a1" },
-  "vscode-go": { "branch": "master", "commit": "179f226cc7fbba405a861a3a69600865f65ca21c" },
+  "vscode-go": { "branch": "master", "commit": "72249dc940e5b6ec97b08e6690a5f042644e2bb5" },
   "vscode-rust": { "branch": "master", "commit": "0c49e2bd1ba95ebdbfdf911e8ca609c2be096027" }
 }
