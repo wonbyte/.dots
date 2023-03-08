@@ -51,7 +51,7 @@ return {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter" },
     config = true,
   },
 
