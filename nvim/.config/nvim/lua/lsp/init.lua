@@ -81,11 +81,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 -- Lua
 lspconfig.lua_ls.setup({
-  on_attach = function(client, bufnr)
-    -- format with stylua
-    client.server_capabilities.document_formatting = false
-    on_attach(client, bufnr)
-  end,
+  on_attach = onattch,
   capabilities = capabilities,
   handlers = handlers,
   settings = {
@@ -131,11 +127,7 @@ lspconfig.gopls.setup({
 
 -- Typescript
 lspconfig.tsserver.setup({
-  on_attach = function(client, bufnr)
-    -- format with eslint
-    client.server_capabilities.document_formatting = false
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach,
   capabilities = capabilities,
   handlers = handlers,
 })
