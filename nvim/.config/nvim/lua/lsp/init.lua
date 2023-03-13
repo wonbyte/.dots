@@ -81,7 +81,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 -- Lua
 lspconfig.lua_ls.setup({
-  on_attach = onattch,
+  on_attach = on_attach,
   capabilities = capabilities,
   handlers = handlers,
   settings = {
