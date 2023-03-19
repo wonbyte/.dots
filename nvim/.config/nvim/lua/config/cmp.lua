@@ -5,10 +5,10 @@ local select_opts = { behavior = cmp.SelectBehavior.Select }
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0
-    and vim.api
-        .nvim_buf_get_lines(0, line - 1, line, true)[1]
-        :sub(col, col)
-        :match("%s")
+      and vim.api
+      .nvim_buf_get_lines(0, line - 1, line, true)[1]
+      :sub(col, col)
+      :match("%s")
       == nil
 end
 
@@ -38,17 +38,13 @@ cmp.setup({
   mapping = {
     ["<Up>"] = cmp.mapping.select_prev_item(select_opts),
     ["<Down>"] = cmp.mapping.select_next_item(select_opts),
-
     ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
     ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
-
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-
     ["<C-Space>"] = cmp.mapping.complete({}),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -71,8 +67,8 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "path" },
     { name = "nvim_lsp", keyword_length = 3 },
-    { name = "buffer", keyword_length = 3 },
-    { name = "vsnip", keyword_length = 2 },
+    { name = "buffer",   keyword_length = 3 },
+    { name = "vsnip",    filetype = 'go',   keyword_length = 2 },
   }, {
     { name = "nvim_lua" },
     { name = "nvim_lsp_signature_help" },
