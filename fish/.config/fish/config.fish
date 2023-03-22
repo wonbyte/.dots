@@ -1,6 +1,7 @@
 # Exports
 set -gx DOTFILES ~/.dotfiles
 set -gx GOPATH $HOME/go
+set -gx PYENV_ROOT $HOME/.pyenv
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 set -gx VAULT_ADDR https://prod.vault.conde.io:443
@@ -9,6 +10,7 @@ set -gx VAULT_ADDR https://prod.vault.conde.io:443
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path $GOPATH/bin
+fish_add_path $PYENV_ROOT/bin
 
 # Aliases
 abbr clr clear
@@ -57,3 +59,6 @@ set -g fish_pager_color_description $comment
 
 # Prompt
 starship init fish | source
+
+#Pyenv
+pyenv init - | source
