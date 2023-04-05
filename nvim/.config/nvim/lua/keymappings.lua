@@ -1,15 +1,15 @@
 -- Global helper
 P = function(v)
-	print(vim.inspect(v))
-	return v
+  print(vim.inspect(v))
+  return v
 end
 
 local function bind(op, outer_opts)
-	outer_opts = outer_opts or { noremap = true, silent = true }
-	return function(lhs, rhs, opts)
-		opts = vim.tbl_extend("force", outer_opts, opts or {})
-		vim.keymap.set(op, lhs, rhs, opts)
-	end
+  outer_opts = outer_opts or { noremap = true, silent = true }
+  return function(lhs, rhs, opts)
+    opts = vim.tbl_extend("force", outer_opts, opts or {})
+    vim.keymap.set(op, lhs, rhs, opts)
+  end
 end
 
 local nnoremap = bind("n")
@@ -45,9 +45,9 @@ nnoremap("<leader>gs", require("telescope.builtin").git_status)
 nnoremap("<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
 
 nnoremap("<leader>ff", function()
-	require("telescope.builtin").find_files({
-		file_ignore_patterns = { ".git", "target", "node_modules" },
-	})
+  require("telescope.builtin").find_files({
+    file_ignore_patterns = { ".git", "target", "node_modules" },
+  })
 end)
 
 nnoremap("<leader>fg", require("telescope.builtin").live_grep)

@@ -49,11 +49,11 @@ opt.shiftround = true
 opt.smartcase = true
 
 opt.listchars = {
-	space = "⋅",
-	eol = "~",
-	extends = "»",
-	precedes = "«",
-	trail = "•",
+  space = "⋅",
+  eol = "~",
+  extends = "»",
+  precedes = "«",
+  trail = "•",
 }
 
 opt.wildmode = { "longest", "list", "full" }
