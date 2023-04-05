@@ -81,7 +81,11 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 -- Lua
 lspconfig.lua_ls.setup({
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- format with stylua
+    client.server_capabilities.document_formatting = false
+    on_attach(client, bufnr)
+  end,
   capabilities = capabilities,
   handlers = handlers,
   settings = {
@@ -127,7 +131,11 @@ lspconfig.gopls.setup({
 
 -- Typescript
 lspconfig.tsserver.setup({
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- format with eslint
+    client.server_capabilities.document_formatting = false
+    on_attach(client, bufnr)
+  end,
   capabilities = capabilities,
   handlers = handlers,
 })
@@ -137,4 +145,86 @@ lspconfig.terraformls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   handlers = handlers,
+})
+
+-- Diagnostics
+lspconfig.diagnosticls.setup({
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "lua",
+    "typescript",
+    "typescriptreact",
+  },
+  init_options = {
+    linters = {
+      eslint_d = {
+        command = "eslint_d",
+        debounce = 100,
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json",
+        },
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "[eslint] ${message} [${ruleId}]",
+          security = "severity",
+        },
+        securities = { ["1"] = "warning",["2"] = "error" },
+        rootPatterns = {
+          ".eslintrc",
+          ".eslintrc.cjs",
+          ".eslintrc.js",
+          ".eslintrc.json",
+          ".eslintrc.yaml",
+          ".eslintrc.yml",
+        },
+      },
+    },
+    filetypes = {
+      javascript = "eslint_d",
+      javascriptreact = "eslint_d",
+      typescript = "eslint_d",
+      typescriptreact = "eslint_d",
+    },
+    formatters = {
+      eslint_d = {
+        command = "eslint_d",
+        args = {
+          "--fix-to-stdout",
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+        },
+        rootPatterns = {
+          ".eslintrc",
+          ".eslintrc.cjs",
+          ".eslintrc.js",
+          ".eslintrc.json",
+          ".eslintrc.yaml",
+          ".eslintrc.yml",
+        },
+      },
+      stylua = {
+        command = "stylua",
+        args = { "--color", "Never", "-" },
+        requiredFiles = { "stylua.toml", ".stylua.toml" },
+        rootPatterns = { "stylua.toml", ".stylua.toml" },
+      },
+    },
+    formatFiletypes = {
+      javascript = "eslint_d",
+      javascriptreact = "eslint_d",
+      lua = "stylua",
+      typescript = "eslint_d",
+      typescriptreact = "eslint_d",
+    },
+  },
 })
