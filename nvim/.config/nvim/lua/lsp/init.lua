@@ -140,6 +140,13 @@ lspconfig.tsserver.setup({
   handlers = handlers,
 })
 
+-- Python
+lspconfig.pylsp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = handlers,
+})
+
 -- Terraform
 lspconfig.terraformls.setup({
   on_attach = on_attach,
