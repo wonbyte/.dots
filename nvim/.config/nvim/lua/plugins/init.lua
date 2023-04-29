@@ -2,25 +2,22 @@ return {
   -- Tokyonight
   {
     "folke/tokyonight.nvim",
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight]])
+      require("config.tokyonight")
     end,
   },
 
   -- LSP config
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
   },
 
   -- Mason
   {
     "williamboman/mason.nvim",
     dependencies = { "williamboman/mason-lspconfig.nvim" },
-    lazy = false,
     config = function()
       require("config.mason")
     end,
@@ -29,7 +26,6 @@ return {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     build = ":TSUpdate",
     config = function()
       require("config.treesitter")
@@ -38,14 +34,12 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    lazy = false,
   },
 
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-    lazy = false,
     config = function()
       require("config.telescope")
     end,
@@ -54,7 +48,6 @@ return {
   -- Telescope FZF
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    lazy = false,
     build = "make",
   },
 
@@ -89,7 +82,6 @@ return {
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
-    lazy = false,
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("config.lualine")
@@ -99,7 +91,6 @@ return {
   -- Fidget
   {
     "j-hui/fidget.nvim",
-    lazy = false,
     config = true,
   },
 
