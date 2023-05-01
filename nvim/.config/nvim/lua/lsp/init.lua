@@ -81,6 +81,24 @@ lspconfig.lua_ls.setup({
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   handlers = handlers,
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
 })
 
 -- Go
