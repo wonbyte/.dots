@@ -101,6 +101,23 @@ lspconfig.rust_analyzer.setup({
   },
 })
 
+-- C/C++
+lspconfig.clangd.setup({
+  capabilities = capabilities,
+  handlers = handlers,
+  settings = {
+    ["clangd"] = {
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--suggest-missing-includes",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+      },
+    },
+  },
+})
+
 -- Go
 lspconfig.gopls.setup({
   capabilities = capabilities,
