@@ -106,7 +106,7 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
   handlers = handlers,
   settings = {
-    ["clangd"] = {
+    clangd = {
       cmd = {
         "clangd",
         "--background-index",
