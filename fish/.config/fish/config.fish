@@ -1,14 +1,14 @@
 # Exports
-set -gx DOTFILES ~/.dotfiles
-set -gx GOPATH $HOME/go
+set -gx DOTFILES $HOME/.dotfiles
+set -gx GOPATH $HOME/.go
 set -gx PYENV_ROOT $HOME/.pyenv
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 set -gx VAULT_ADDR https://prod.vault.conde.io:443
 
 # Paths
-fish_add_path ~/.cargo/bin
-fish_add_path ~/.local/bin
+fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/.local/bin
 fish_add_path $GOPATH/bin
 fish_add_path $PYENV_ROOT/bin
 
