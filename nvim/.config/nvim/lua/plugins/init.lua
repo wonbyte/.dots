@@ -72,7 +72,6 @@ return {
       { "hrsh7th/vim-vsnip" },
       { "hrsh7th/vim-vsnip-integ" },
       { "rust-lang/vscode-rust" },
-      { "golang/vscode-go" },
     },
     config = function()
       require("config.cmp")
