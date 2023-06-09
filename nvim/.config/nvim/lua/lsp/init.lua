@@ -118,28 +118,8 @@ lspconfig.clangd.setup({
   },
 })
 
--- Go
-lspconfig.gopls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-    },
-  },
-})
-
 -- Typescript
 lspconfig.tsserver.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-})
-
--- Python
-lspconfig.pylsp.setup({
   capabilities = capabilities,
   handlers = handlers,
 })
