@@ -13,15 +13,10 @@ abbr v nvim
 abbr vi nvim
 abbr vim nvim
 
-# name: Tokyo Night Moon
-# license: MIT
-# author: Folke Lemaitre
-# upstream: https://github.com/folke/tokyonight.nvim/blob/main/extras/fish/tokyonight_moon.fish
-
 # TokyoNight Color Palette
 set -l foreground c8d3f5
-set -l selection 3654a7
-set -l comment 7a88cf
+set -l selection 2d3f76
+set -l comment 636da6
 set -l red ff757f
 set -l orange ff966c
 set -l yellow ffc777
@@ -51,6 +46,7 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
+set -g fish_pager_color_selected_background --background=$selection
 
 # Prompt
 starship init fish | source
