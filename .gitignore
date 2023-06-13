@@ -11,9 +11,3 @@ packer_compiled.lua
 
 # homebrew
 Brewfile.lock.json
-
-# kubens
-kubens
-
-# terraform
-terraform
