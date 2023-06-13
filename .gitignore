@@ -15,6 +15,5 @@ Brewfile.lock.json
 # kubens
 kubens
 
-# pipenv
-pipenv
-pipenv-resolver
+# terraform
+terraform
