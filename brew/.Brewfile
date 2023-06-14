@@ -1,7 +1,4 @@
-tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
-tap "homebrew/services"
-brew "awscli"
 brew "cmake"
 brew "fd"
 brew "fish"
