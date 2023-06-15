@@ -93,14 +93,4 @@ return {
     config = true,
     tag = "legacy",
   },
-
-  -- Lightbulb
-  {
-    "kosayoda/nvim-lightbulb",
-    lazy = { "CursorHold", "CursorHoldI" },
-    dependencies = "antoinemadec/FixCursorHold.nvim",
-    config = function()
-      require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
-    end,
-  },
 }
