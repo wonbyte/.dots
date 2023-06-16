@@ -1,7 +1,7 @@
 local tokyonight = require("tokyonight")
 
 tokyonight.setup({
-  style = "moon",
+  style = "night",
   hide_inactive_statusline = true,
   sidebars = {
     "qf",
@@ -16,5 +16,3 @@ tokyonight.setup({
     hl.LineNrBelow = { fg = c.fg_gutter }
   end,
 })
-
-tokyonight.load()
