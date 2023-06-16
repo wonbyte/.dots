@@ -11,6 +11,7 @@ g.netrw_winsize = 25
 g.cursorhold_updatetime = 100
 
 opt.termguicolors = true
+opt.background = "dark"
 
 opt.completeopt = { "menu", "menuone", "noselect" }
 
