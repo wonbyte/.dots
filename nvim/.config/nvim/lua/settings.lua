@@ -10,6 +10,7 @@ g.netrw_winsize = 25
 -- Lightbulb plugin (FixCursorHold)
 g.cursorhold_updatetime = 100
 
+opt.background = "dark"
 opt.termguicolors = true
 
 opt.completeopt = { "menu", "menuone", "noselect" }

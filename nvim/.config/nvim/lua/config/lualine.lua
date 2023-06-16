@@ -1,40 +1,29 @@
-require("lualine").setup({
+require('lualine').setup {
   options = {
-    icons_enabled = true,
     theme = "tokyonight",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = {},
-    always_divide_middle = true,
+    component_separators = '|',
+    section_separators = { left = '', right = '' },
   },
   sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "diff" },
-    lualine_c = {
-      {
-        "filetype",
-        icon_only = true,
-        separator = "",
-        padding = { left = 1, right = 0 },
-      },
-      {
-        "filename",
-        path = 1,
-        symbols = { modified = "  ", readonly = "", unnamed = "" },
-      },
+    lualine_a = {
+      { 'mode', separator = { left = '' }, right_padding = 2 },
     },
+    lualine_b = { 'filename', 'branch' },
+    lualine_c = { 'fileformat' },
     lualine_x = {},
-    lualine_y = { "branch" },
-    lualine_z = { "location" },
+    lualine_y = { 'filetype', 'progress' },
+    lualine_z = {
+      { 'location', separator = { right = '' }, left_padding = 2 },
+    },
   },
   inactive_sections = {
-    lualine_a = {},
+    lualine_a = { 'filename' },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {},
+    lualine_z = { 'location' },
   },
   tabline = {},
   extensions = {},
-})
+}

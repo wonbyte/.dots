@@ -1,7 +1,7 @@
 local tokyonight = require("tokyonight")
 
 tokyonight.setup({
-  style = "moon",
+  style = "night",
   hide_inactive_statusline = true,
   sidebars = {
     "qf",
@@ -17,4 +17,4 @@ tokyonight.setup({
   end,
 })
 
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme tokyonight-night]]
