@@ -1,0 +1,63 @@
+return {
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash",
+          "c",
+          "cpp",
+          "css",
+          "dockerfile",
+          "fish",
+          "html",
+          "graphql",
+          "hcl",
+          "javascript",
+          "json",
+          "jsonc",
+          "lua",
+          "markdown",
+          "rust",
+          "scss",
+          "sql",
+          "typescript",
+          "tsx",
+          "toml",
+          "vim",
+          "yaml",
+        },
+        highlight = {
+          enable = {
+            "bash",
+            "c",
+            "cpp",
+            "css",
+            "dockerfile",
+            "fish",
+            "html",
+            "graphql",
+            "hcl",
+            "javascript",
+            "json",
+            "jsonc",
+            "lua",
+            "markdown",
+            "rust",
+            "scss",
+            "sql",
+            "typescript",
+            "tsx",
+            "toml",
+            "vim",
+            "yaml",
+          },
+          additional_vim_regex_highlighting = false,
+        },
+      })
+    end
+  },
+}
