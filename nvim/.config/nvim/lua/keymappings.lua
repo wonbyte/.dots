@@ -34,9 +34,9 @@ vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
 -- Telescope
-nnoremap("<leader>rc", require("config.telescope").search_dotfiles)
+-- nnoremap("<leader>rc", require("config.telescope").search_dotfiles)
 
-nnoremap("<leader>gb", require("config.telescope").git_branches)
+-- nnoremap("<leader>gb", require("config.telescope").git_branches)
 
 nnoremap("<leader>gc", require("telescope.builtin").git_commits)
 
