@@ -32,10 +32,6 @@ return {
     end,
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-  },
-
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
