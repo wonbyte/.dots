@@ -3,6 +3,9 @@ set -gx DOTFILES $HOME/.dotfiles
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 
+# Disable greeting
+set fish_greeting ""
+
 # Paths
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.local/bin
