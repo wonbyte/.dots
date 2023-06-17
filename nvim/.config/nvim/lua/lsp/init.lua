@@ -3,6 +3,40 @@ local lspconfig = require("lspconfig")
 -- Capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- Diagnostics
+vim.diagnostic.config({
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
+local border = {
+  { "🭽", "FloatBorder" },
+  { "▔", "FloatBorder" },
+  { "🭾", "FloatBorder" },
+  { "▕", "FloatBorder" },
+  { "🭿", "FloatBorder" },
+  { "▁", "FloatBorder" },
+  { "🭼", "FloatBorder" },
+  { "▏", "FloatBorder" },
+}
+
+-- Handlers
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = border }
+  ),
+  ["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = border }
+  ),
+}
+
 -- Servers
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -11,6 +45,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 -- Lua
 lspconfig.lua_ls.setup({
   capabilities = capabilities,
+  handlers = handlers,
   settings = {
     Lua = {
       runtime = {
@@ -33,6 +68,7 @@ lspconfig.lua_ls.setup({
 -- Rust
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
+  handlers = handlers,
   settings = {
     ["rust-analyzer"] = {
       imports = {
@@ -56,6 +92,7 @@ lspconfig.rust_analyzer.setup({
 -- C/C++
 lspconfig.clangd.setup({
   capabilities = capabilities,
+  handlers = handlers,
   settings = {
     clangd = {
       cmd = {
@@ -72,11 +109,13 @@ lspconfig.clangd.setup({
 -- Typescript
 lspconfig.tsserver.setup({
   capabilities = capabilities,
+  handlers = handlers,
 })
 
 -- Terraform
 lspconfig.terraformls.setup({
   capabilities = capabilities,
+  handlers = handlers,
 })
 
 -- Global mappings.
