@@ -29,9 +29,6 @@ return {
         lualine_y = {},
         lualine_z = { 'location' },
       },
-      tabline = {},
-      extensions = {},
-
     }
   },
 }
