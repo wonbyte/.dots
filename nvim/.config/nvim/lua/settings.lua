@@ -35,7 +35,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.signcolumn = "yes"
-opt.colorcolumn = "120"
+opt.colorcolumn = "80"
 
 opt.clipboard = "unnamedplus"
 
