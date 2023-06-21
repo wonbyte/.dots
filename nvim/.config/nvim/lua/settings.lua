@@ -34,10 +34,8 @@ opt.shortmess:append("c")
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.updatetime = 50
-
 opt.signcolumn = "yes"
-opt.colorcolumn = "80"
+opt.colorcolumn = "120"
 
 opt.clipboard = "unnamedplus"
 
