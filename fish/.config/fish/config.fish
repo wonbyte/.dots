@@ -2,6 +2,7 @@
 set -gx DOTFILES $HOME/.dotfiles
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
+set -gx VAULT_ADDR https://prod.vault.conde.io:443
 
 # Disable greeting
 set fish_greeting ""
