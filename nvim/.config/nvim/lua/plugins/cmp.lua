@@ -18,8 +18,6 @@ return {
       local cmp = require("cmp")
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
-      local select_opts = { behavior = cmp.SelectBehavior.Select }
-
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
