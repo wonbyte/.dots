@@ -41,7 +41,9 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-e>"] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- Accept currently selected item. Set `select` to `false` to only
+          -- confirm explicitly selected items.
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -50,7 +52,9 @@ return {
             elseif has_words_before() then
               cmp.complete()
             else
-              fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+              -- The fallback function sends a already mapped key. In this case,
+              -- it's probably `<Tab>`.
+              fallback()
             end
           end, { "i", "s" }),
 
