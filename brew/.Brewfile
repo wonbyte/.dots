@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
+brew "awscli"
 brew "clang-format"
 brew "cmake"
 brew "doxygen"
