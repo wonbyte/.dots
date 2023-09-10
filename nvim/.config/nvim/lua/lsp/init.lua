@@ -5,13 +5,14 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Diagnostics
 vim.diagnostic.config({
-  severity_sort = true,
   float = {
     border = "rounded",
     source = "always",
     header = "",
     prefix = "",
   },
+  severity_sort = true,
+  virtual_text = false,
 })
 
 local border = {
