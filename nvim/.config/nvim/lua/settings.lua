@@ -7,9 +7,6 @@ g.netrw_browse_split = 0
 g.netrw_banner = 0
 g.netrw_winsize = 25
 
--- Lightbulb plugin (FixCursorHold)
-g.cursorhold_updatetime = 100
-
 opt.background = "dark"
 opt.termguicolors = true
 
