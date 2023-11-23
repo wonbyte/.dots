@@ -1,3 +1,5 @@
+vim.g.cmptoggle = false
+
 return {
   -- Cmp
   {
@@ -28,8 +30,10 @@ return {
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
       end
 
-
       cmp.setup({
+        enabled = function()
+          return vim.g.cmptoggle
+        end,
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -74,7 +78,7 @@ return {
         }, {
           { name = "nvim_lua" },
           { name = "nvim_lsp_signature_help" },
-        }),
+        })
       })
 
       -- insert `(` after select function or method item
