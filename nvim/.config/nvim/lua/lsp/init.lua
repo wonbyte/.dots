@@ -119,6 +119,12 @@ lspconfig.terraformls.setup({
   handlers = handlers,
 })
 
+-- Omnisharp
+lspconfig.omnisharp.setup({
+  capabilities = capabilities,
+  handlers = handlers,
+})
+
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)

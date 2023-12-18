@@ -10,6 +10,8 @@ set fish_greeting ""
 # Paths
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.dotnet
+fish_add_path $HOME/.dotnet/tools
 
 # Aliases
 abbr clr clear
