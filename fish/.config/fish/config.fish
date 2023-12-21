@@ -1,8 +1,8 @@
 # Exports
-set -gx DOTFILES $HOME/.dotfiles
+set -gx DOTFILES $HOME/.dots
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
-set -gx VAULT_ADDR https://prod.vault.conde.io:443
+set -gx PATH $PATH /opt/homebrew/bin
 
 # Disable greeting
 set fish_greeting ""
