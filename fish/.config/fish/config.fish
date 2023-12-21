@@ -1,5 +1,6 @@
 # Exports
 set -gx DOTFILES $HOME/.dots
+set -gx GOPATH $HOME/.go
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 set -gx PATH $PATH /opt/homebrew/bin
@@ -10,8 +11,7 @@ set fish_greeting ""
 # Paths
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.dotnet
-fish_add_path $HOME/.dotnet/tools
+fish_add_path $GOPATH/bin
 
 # Aliases
 abbr clr clear
