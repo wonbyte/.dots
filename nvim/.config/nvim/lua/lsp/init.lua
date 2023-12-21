@@ -66,6 +66,23 @@ lspconfig.lua_ls.setup({
   },
 })
 
+-- C/C++
+lspconfig.clangd.setup({
+  capabilities = capabilities,
+  handlers = handlers,
+  settings = {
+    clangd = {
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--suggest-missing-includes",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+      },
+    },
+  },
+})
+
 -- Rust
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
@@ -90,37 +107,14 @@ lspconfig.rust_analyzer.setup({
   },
 })
 
--- C/C++
-lspconfig.clangd.setup({
+-- Go
+lspconfig.gopls.setup({
   capabilities = capabilities,
   handlers = handlers,
-  settings = {
-    clangd = {
-      cmd = {
-        "clangd",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--clang-tidy",
-        "--header-insertion=iwyu",
-      },
-    },
-  },
 })
 
 -- Typescript
 lspconfig.tsserver.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-})
-
--- Terraform
-lspconfig.terraformls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-})
-
--- Omnisharp
-lspconfig.omnisharp.setup({
   capabilities = capabilities,
   handlers = handlers,
 })
