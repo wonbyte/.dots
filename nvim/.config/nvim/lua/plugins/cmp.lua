@@ -1,5 +1,3 @@
-vim.g.cmptoggle = true
-
 return {
   -- Cmp
   {
@@ -32,9 +30,6 @@ return {
       end
 
       cmp.setup({
-        enabled = function()
-          return vim.g.cmptoggle
-        end,
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),

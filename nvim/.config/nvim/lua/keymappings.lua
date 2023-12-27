@@ -58,8 +58,5 @@ nnoremap("<leader>gw", require("telescope.builtin").grep_string)
 
 nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 
--- Cmp
-nnoremap("<leader>co", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>")
-
 -- Tests
 nnoremap(",t", "<Plug>PlenaryTestFile")
