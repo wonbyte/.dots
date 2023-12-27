@@ -28,6 +28,7 @@ return {
           "tsx",
           "toml",
           "vim",
+          "vimdoc",
           "yaml",
         },
         highlight = {
@@ -54,6 +55,7 @@ return {
             "tsx",
             "toml",
             "vim",
+            "vimdoc",
             "yaml",
           },
         },
