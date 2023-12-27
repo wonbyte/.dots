@@ -14,8 +14,8 @@ return {
       { "hrsh7th/cmp-vsnip" },
       { "hrsh7th/vim-vsnip" },
       { "hrsh7th/vim-vsnip-integ" },
-      { "rust-lang/vscode-rust" },
-      { "golang/vscode-go" }
+      { "golang/vscode-go" },
+      { "rust-lang/vscode-rust" }
     },
     config = function()
       local cmp = require("cmp")
@@ -71,8 +71,8 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "buffer" },
           { name = "vsnip" },
+          { name = "buffer" },
           { name = "path" },
         }, {
           { name = "nvim_lua" },
