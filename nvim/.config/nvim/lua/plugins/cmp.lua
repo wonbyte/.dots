@@ -15,6 +15,7 @@ return {
       { "hrsh7th/vim-vsnip" },
       { "hrsh7th/vim-vsnip-integ" },
       { "rust-lang/vscode-rust" },
+      { "golang/vscode-go" }
     },
     config = function()
       local cmp = require("cmp")
@@ -45,8 +46,6 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-e>"] = cmp.mapping.abort(),
-          -- Accept currently selected item. Set `select` to `false` to only
-          -- confirm explicitly selected items.
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
