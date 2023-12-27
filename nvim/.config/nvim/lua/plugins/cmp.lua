@@ -1,4 +1,4 @@
-vim.g.cmptoggle = false
+vim.g.cmptoggle = true
 
 return {
   -- Cmp
@@ -71,13 +71,13 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp", keyword_length = 3 },
-          { name = "buffer",   keyword_length = 3 },
-          { name = "vsnip",    keyword_length = 2 },
-          { name = "path" },
+          { name = "nvim_lsp", keyword_length = 3, max_item_count = 5 },
+          { name = "buffer",   keyword_length = 3, max_item_count = 5 },
+          { name = "vsnip",    keyword_length = 2, max_item_count = 5 },
+          { name = "path",     keyword_length = 2, max_item_count = 5 },
         }, {
-          { name = "nvim_lua" },
-          { name = "nvim_lsp_signature_help" },
+          { name = "nvim_lua",                keyword_length = 2, max_item_count = 5 },
+          { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 5 },
         })
       })
 
