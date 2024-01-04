@@ -39,3 +39,11 @@ autocmd("Filetype", {
   },
   command = "setlocal shiftwidth=2 tabstop=2",
 })
+
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.mli",
+  desc = "Detect and set the proper file type for ocaml interface files",
+  callback = function()
+    vim.cmd(":set filetype=ocamlinterface")
+  end,
+})

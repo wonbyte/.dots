@@ -43,6 +43,38 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+-- C/C++
+lspconfig.clangd.setup({
+  capabilities = capabilities,
+  handlers = handlers,
+  settings = {
+    clangd = {
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--suggest-missing-includes",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+      },
+    },
+  },
+})
+
+-- Go
+lspconfig.gopls.setup({
+  capabilities = capabilities,
+  handlers = handlers,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})
+
 -- Lua
 lspconfig.lua_ls.setup({
   capabilities = capabilities,
@@ -66,21 +98,9 @@ lspconfig.lua_ls.setup({
   },
 })
 
--- C/C++
-lspconfig.clangd.setup({
+lspconfig.ocamllsp.setup({
   capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    clangd = {
-      cmd = {
-        "clangd",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--clang-tidy",
-        "--header-insertion=iwyu",
-      },
-    },
-  },
+  handlers = handlers
 })
 
 -- Rust
@@ -103,21 +123,6 @@ lspconfig.rust_analyzer.setup({
       procMacro = {
         enable = true,
       },
-    },
-  },
-})
-
--- Go
-lspconfig.gopls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
     },
   },
 })
