@@ -40,6 +40,7 @@ autocmd("Filetype", {
   command = "setlocal shiftwidth=2 tabstop=2",
 })
 
+-- https://github.com/dmmulroy/dotfiles/blob/main/.config/nvim/after/ftdetect/ocamlinterface.lua
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.mli",
   desc = "Detect and set the proper file type for ocaml interface files",
