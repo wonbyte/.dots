@@ -19,6 +19,9 @@ abbr v nvim
 abbr vi nvim
 abbr vim nvim
 
+# Opam
+eval (opam env)
+
 # TokyoNight Color Palette
 set -l foreground c8d3f5
 set -l selection 2d3f76
