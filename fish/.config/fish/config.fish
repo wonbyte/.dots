@@ -1,6 +1,6 @@
 # Exports
 set -gx DOTFILES $HOME/.dots
-set -gx GOPATH $HOME/go
+set -gx GOPATH $HOME/.go
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 
@@ -13,7 +13,7 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 
-# opam configuration
+# Opam
 source /Users/gps/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 # Aliases
