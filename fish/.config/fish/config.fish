@@ -13,9 +13,6 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 
-# Opam
-source /Users/gps/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
 # Aliases
 abbr clr clear
 abbr v nvim
