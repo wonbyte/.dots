@@ -16,10 +16,15 @@ autocmd("BufWritePre", {
   command = ":%s/\\s\\+$//e",
 })
 
--- No auto commenting for new lines
+--- No auto commenting for new lines
 autocmd("BufEnter", {
   pattern = "*",
-  command = "set fo-=c fo-=r fo-=o",
+  command = "set fo-=cro",
+})
+
+autocmd("BufEnter", {
+  pattern = "*",
+  command = "setlocal fo-=cro",
 })
 
 -- Set indentation to 2 spaces
@@ -30,9 +35,12 @@ autocmd("Filetype", {
     "css",
     "html",
     "javascript",
+    "javascriptreact",
     "lua",
-    "typescript",
+    "react",
     "scss",
+    "typescript",
+    "typescriptreact",
     "xml",
     "xhtml",
     "yaml",
