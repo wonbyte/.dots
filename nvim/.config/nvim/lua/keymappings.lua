@@ -46,7 +46,7 @@ nnoremap("<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
 
 nnoremap("<leader>ff", function()
   require("telescope.builtin").find_files({
-    file_ignore_patterns = { ".git", "target", "node_modules" },
+    file_ignore_patterns = { ".git", "target", "node_modules", "tmp" },
   })
 end)
 
