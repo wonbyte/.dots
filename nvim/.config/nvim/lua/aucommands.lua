@@ -57,6 +57,15 @@ autocmd("Filetype", {
   command = "setlocal shiftwidth=2 tabstop=2",
 })
 
+autocmd({ "FileType" }, {
+  pattern = "ocaml",
+  desc = "Disable automatic comment indentation for OCaml files",
+  callback = function()
+    vim.bo.indentexpr = ""
+  end,
+})
+
+
 -- Highlight on yank
 augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
