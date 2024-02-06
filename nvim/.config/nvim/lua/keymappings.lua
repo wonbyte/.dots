@@ -22,6 +22,8 @@ nnoremap("<C-h>", "<cmd>noh<CR>")
 
 nnoremap("<space>,", ":set invlist<CR>")
 
+inoremap("jk", "<Esc>")
+
 nnoremap("<F1>", "<Nop>")
 inoremap("<F1>", "<Nop>")
 
