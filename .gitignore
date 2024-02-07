@@ -8,6 +8,3 @@ nvm.fish
 # nvim
 packer_compiled.lua
 .nvimlog
-
-# homebrew
-.Brewfile.lock.json
