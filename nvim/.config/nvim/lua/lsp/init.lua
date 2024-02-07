@@ -98,35 +98,6 @@ lspconfig.lua_ls.setup({
   },
 })
 
-lspconfig.ocamllsp.setup({
-  capabilities = capabilities,
-  handlers = handlers
-})
-
--- Rust
-lspconfig.rust_analyzer.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = {
-          group = "module",
-        },
-        prefix = "self",
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
-      procMacro = {
-        enable = true,
-      },
-    },
-  },
-})
-
 -- Typescript
 lspconfig.tsserver.setup({
   capabilities = capabilities,
