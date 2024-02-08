@@ -60,19 +60,6 @@ lspconfig.clangd.setup({
   },
 })
 
--- Go
-lspconfig.gopls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-    },
-  },
-})
-
 -- Lua
 lspconfig.lua_ls.setup({
   capabilities = capabilities,
