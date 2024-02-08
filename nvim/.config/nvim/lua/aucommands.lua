@@ -8,7 +8,7 @@ autocmd("BufWritePre", {
   command = ":%s/\\s\\+$//e",
 })
 
---- No auto commenting for new lines
+-- No auto commenting for new lines
 autocmd("BufEnter", {
   pattern = "*",
   command = "set fo-=cro",
@@ -17,15 +17,6 @@ autocmd("BufEnter", {
 autocmd("BufEnter", {
   pattern = "*",
   command = "setlocal fo-=cro",
-})
-
--- https://github.com/dmmulroy/dotfiles/blob/main/.config/nvim/after/ftdetect/ocamlinterface.lua
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.mli",
-  desc = "Detect and set the proper file type for ocaml interface files",
-  callback = function()
-    vim.cmd(":set filetype=ocamlinterface")
-  end,
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
@@ -56,15 +47,6 @@ autocmd("Filetype", {
   },
   command = "setlocal shiftwidth=2 tabstop=2",
 })
-
-autocmd({ "FileType" }, {
-  pattern = "ocaml",
-  desc = "Disable automatic comment indentation for OCaml files",
-  callback = function()
-    vim.bo.indentexpr = ""
-  end,
-})
-
 
 -- Highlight on yank
 augroup("YankHighlight", { clear = true })
