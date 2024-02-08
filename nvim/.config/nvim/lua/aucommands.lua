@@ -11,12 +11,7 @@ autocmd("BufWritePre", {
 -- No auto commenting for new lines
 autocmd("BufEnter", {
   pattern = "*",
-  command = "set fo-=cro",
-})
-
-autocmd("BufEnter", {
-  pattern = "*",
-  command = "setlocal fo-=cro",
+  command = "set fo-=cro | setlocal fo-=cro",
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
