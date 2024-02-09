@@ -14,35 +14,6 @@ autocmd("BufEnter", {
   command = "set fo-=cro | setlocal fo-=cro",
 })
 
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.tmpl",
-  desc = "Detect and set the proper file type for tmpl files",
-  callback = function()
-    vim.cmd(":set filetype=html")
-  end,
-})
-
--- Set indentation to 2 spaces
-augroup("setIndent", { clear = true })
-autocmd("Filetype", {
-  group = "setIndent",
-  pattern = {
-    "css",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "lua",
-    "react",
-    "scss",
-    "typescript",
-    "typescriptreact",
-    "xml",
-    "xhtml",
-    "yaml",
-  },
-  command = "setlocal shiftwidth=2 tabstop=2",
-})
-
 -- Highlight on yank
 augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
