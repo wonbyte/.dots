@@ -7,7 +7,7 @@ return {
   -- Mason
   {
     "williamboman/mason.nvim",
-    dependencies = { "williamboman/mason-lspconfig.nvim", config = true, },
+    dependencies = { "williamboman/mason-lspconfig.nvim", config = true },
     opts = {
       ui = {
         icons = {
@@ -16,6 +16,6 @@ return {
           package_uninstalled = "✗",
         },
       },
-    }
+    },
   },
 }

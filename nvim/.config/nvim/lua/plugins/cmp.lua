@@ -12,7 +12,8 @@ return {
       { "hrsh7th/cmp-vsnip" },
       { "hrsh7th/vim-vsnip" },
       { "hrsh7th/vim-vsnip-integ" },
-      { "rust-lang/vscode-rust" }
+      { "golang/vscode-go" },
+      { "rust-lang/vscode-rust" },
     },
     config = function()
       local cmp = require("cmp")
@@ -21,11 +22,20 @@ return {
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0
+          and vim.api
+              .nvim_buf_get_lines(0, line - 1, line, true)[1]
+              :sub(col, col)
+              :match("%s")
+            == nil
       end
 
       local feedkey = function(key, mode)
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+        vim.api.nvim_feedkeys(
+          vim.api.nvim_replace_termcodes(key, true, true, true),
+          mode,
+          true
+        )
       end
 
       cmp.setup({
@@ -40,7 +50,7 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-e>"] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -71,7 +81,7 @@ return {
         }, {
           { name = "nvim_lua" },
           { name = "nvim_lsp_signature_help" },
-        })
+        }),
       })
 
       -- insert `(` after select function or method item

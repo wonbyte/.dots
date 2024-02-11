@@ -2,7 +2,7 @@ return {
   -- Tokyonight
   {
     "folke/tokyonight.nvim",
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       style = "moon",
@@ -21,7 +21,7 @@ return {
       end,
     },
     config = function()
-      vim.cmd [[colorscheme tokyonight]]
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 }

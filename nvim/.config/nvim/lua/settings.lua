@@ -53,4 +53,5 @@ opt.listchars = {
 }
 
 opt.wildmode = { "longest", "list", "full" }
-opt.wildignore = { "*/.git/*", "*/node_modules/*", "*/target/*", "*/build/*", "^tmp$" }
+opt.wildignore =
+  { "*/.git/*", "*/node_modules/*", "*/target/*", "*/build/*", "^tmp$" }
