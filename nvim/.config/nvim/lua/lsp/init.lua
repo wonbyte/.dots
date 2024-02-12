@@ -96,6 +96,12 @@ lspconfig.lua_ls.setup({
   },
 })
 
+-- Ocaml
+lspconfig.ocamllsp.setup({
+  capabilities = capabilities,
+  handlers = handlers,
+})
+
 -- Rust
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
