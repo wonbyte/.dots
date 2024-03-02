@@ -55,3 +55,9 @@ autocmd({ "FileType" }, {
   desc = "Disable automatic comment indentation for OCaml files",
   command = "setlocal indentexpr=",
 })
+
+autocmd({ "FileType" }, {
+  pattern = "ocamlinterface",
+  desc = "Disable automatic comment indentation for OCaml files",
+  command = "setlocal indentexpr=",
+})

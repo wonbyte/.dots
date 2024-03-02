@@ -5,7 +5,7 @@ return {
     event = { "InsertEnter" },
     config = function()
       require("nvim-autopairs").setup({
-        disable_filetype = { "ocaml" },
+        disable_filetype = { "ocaml", "ocamlinterface"},
       })
     end,
   },
