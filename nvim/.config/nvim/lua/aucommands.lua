@@ -23,6 +23,8 @@ autocmd("Filetype", {
     "html",
     "javascript",
     "json",
+    "ocaml",
+    "ocamlinterface",
     "react",
     "scss",
     "tsx",
