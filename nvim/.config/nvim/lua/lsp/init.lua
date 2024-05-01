@@ -43,36 +43,6 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
--- C/C++
-lspconfig.clangd.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    clangd = {
-      cmd = {
-        "clangd",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--clang-tidy",
-        "--header-insertion=iwyu",
-      },
-    },
-  },
-})
-
--- Go
-lspconfig.gopls.setup({
-  capabilities = capabilities,
-  handlers = handlers,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-    },
-  },
-})
-
 -- Lua
 lspconfig.lua_ls.setup({
   capabilities = capabilities,
@@ -94,12 +64,6 @@ lspconfig.lua_ls.setup({
       },
     },
   },
-})
-
--- Ocaml
-lspconfig.ocamllsp.setup({
-  capabilities = capabilities,
-  handlers = handlers,
 })
 
 -- Rust
@@ -124,12 +88,6 @@ lspconfig.rust_analyzer.setup({
       },
     },
   },
-})
-
--- Typescript
-lspconfig.tsserver.setup({
-  capabilities = capabilities,
-  handlers = handlers,
 })
 
 -- Global mappings.
