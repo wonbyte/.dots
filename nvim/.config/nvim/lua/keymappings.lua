@@ -49,9 +49,6 @@ nnoremap("<leader>ff", function()
     file_ignore_patterns = {
       ".git",
       "target",
-      "node_modules",
-      "_opam",
-      "_build",
       "^tmp$",
     },
   })
