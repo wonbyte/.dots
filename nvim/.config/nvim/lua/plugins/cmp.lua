@@ -12,7 +12,6 @@ return {
       { "hrsh7th/cmp-vsnip" },
       { "hrsh7th/vim-vsnip" },
       { "hrsh7th/vim-vsnip-integ" },
-      { "golang/vscode-go" },
       { "rust-lang/vscode-rust" },
     },
     config = function()
