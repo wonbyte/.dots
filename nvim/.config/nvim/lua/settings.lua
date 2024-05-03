@@ -45,12 +45,12 @@ opt.shiftround = true
 opt.smartcase = true
 
 opt.listchars = {
-	space = "⋅",
-	eol = "~",
-	extends = "»",
-	precedes = "«",
-	trail = "•",
+  space = "⋅",
+  eol = "~",
+  extends = "»",
+  precedes = "«",
+  trail = "•",
 }
 
 opt.wildmode = { "longest", "list", "full" }
-opt.wildignore = { "*/.git/*", "*/target/*", "^tmp$" }
+opt.wildignore = { ".git/*", "opam/*", "target/*", "^tmp$" }
