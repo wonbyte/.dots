@@ -45,13 +45,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 autocmd({ "FileType" }, {
-  pattern = "ocaml",
+  pattern = { "ocaml", "ocamlinterface", ".mli" },
   desc = "Disable automatic comment indentation for OCaml files",
-  command = "setlocal indentexpr=",
-})
-
-autocmd({ "FileType" }, {
-  pattern = "ocamlinterface",
-  desc = "Disable automatic comment indentation for OCaml interface files",
   command = "setlocal indentexpr=",
 })
