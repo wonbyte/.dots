@@ -7,7 +7,7 @@ return {
     opts = {},
     config = function()
       require("tokyonight").setup({
-        style = "storm",
+        style = "night",
         hide_inactive_statusline = true,
         sidebars = {
           "qf",
