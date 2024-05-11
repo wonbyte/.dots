@@ -1,20 +1,28 @@
 return {
-  -- Gruvbox
+  -- Tokyonight
   {
-    "ellisonleao/gruvbox.nvim",
-    lazy = false, -- Ensure it's loaded at startup
-    priority = 1000, -- Load before other plugins
+    "folke/tokyonight.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
     opts = {},
     config = function()
-      require("gruvbox").setup({
-        overrides = {
-          StatusLine = { fg = "#a89984", bg = "#282828" }, -- Active status line
-          StatusLineNC = { fg = "#a89984", bg = "#282828" }, -- Inactive status line
+      require("tokyonight").setup({
+        style = "storm",
+        hide_inactive_statusline = true,
+        sidebars = {
+          "qf",
+          "terminal",
+          "packer",
+          "help",
         },
+        on_highlights = function(hl, c)
+          hl.CursorLineNr = { fg = c.orange, bold = true }
+          hl.LineNr = { fg = c.orange, bold = true }
+          hl.LineNrAbove = { fg = c.fg_gutter }
+          hl.LineNrBelow = { fg = c.fg_gutter }
+        end,
       })
-
-      -- Set the color scheme to gruvbox
-      vim.cmd([[colorscheme gruvbox]])
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 }
