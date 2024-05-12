@@ -65,3 +65,6 @@ nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 
 -- Tests
 nnoremap(",t", "<Plug>PlenaryTestFile")
+
+-- Cmp On/Off
+nnoremap("<Leader>a", ":NvimCmpToggle<CR>")
