@@ -38,6 +38,9 @@ return {
       end
 
       cmp.setup({
+        completion = {
+          autocomplete = false,
+        },
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -50,6 +53,7 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-Space>"] = cmp.mapping.complete(),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
