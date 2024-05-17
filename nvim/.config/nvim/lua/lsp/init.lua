@@ -7,7 +7,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 vim.diagnostic.config({
   float = {
     border = "rounded",
-    source = "always",
+    source = true,
     header = "",
     prefix = "",
   },
