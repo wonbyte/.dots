@@ -37,21 +37,6 @@ return {
         )
       end
 
-      local function toggle_cmp()
-        local current_setting = cmp.get_config().completion.autocomplete
-        if current_setting and #current_setting > 0 then
-          cmp.setup({ completion = { autocomplete = false } })
-          vim.notify("Cmp disabled")
-        else
-          cmp.setup({
-            completion = { autocomplete = { cmp.TriggerEvent.TextChanged } },
-          })
-          vim.notify("Cmp enabled")
-        end
-      end
-
-      vim.api.nvim_create_user_command("NvimCmpToggle", toggle_cmp, {})
-
       cmp.setup({
         completion = {
           autocomplete = false,

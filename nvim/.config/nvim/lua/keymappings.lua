@@ -1,3 +1,5 @@
+local cmp = require("cmp")
+
 -- Global helper
 P = function(v)
   print(vim.inspect(v))
@@ -32,7 +34,6 @@ cnoremap("%s/", "%sm/")
 
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
-
 -- Telescope
 nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
 
@@ -67,4 +68,22 @@ nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 nnoremap(",t", "<Plug>PlenaryTestFile")
 
 -- Cmp On/Off
-nnoremap("<Leader>a", ":NvimCmpToggle<CR>")
+nnoremap("<Leader>cm", function()
+  local current_setting = cmp.get_config().completion.autocomplete
+  if current_setting and #current_setting > 0 then
+    cmp.setup({ completion = { autocomplete = false } })
+    vim.notify("Cmp disabled")
+  else
+    cmp.setup({
+      completion = { autocomplete = { cmp.TriggerEvent.TextChanged } },
+    })
+    vim.notify("Cmp enabled")
+  end
+end)
+
+-- Inlay On/Off
+nnoremap("<leader>h", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({
+    bufnr = 0,
+  }))
+end)
