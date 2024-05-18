@@ -8,7 +8,6 @@ g.netrw_banner = 0
 g.netrw_winsize = 25
 
 opt.background = "dark"
-opt.termguicolors = true
 
 opt.completeopt = { "menu", "menuone", "noselect" }
 
