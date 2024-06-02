@@ -38,11 +38,6 @@ local handlers = {
   ),
 }
 
--- Servers
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 -- C/C++
 lspconfig.clangd.setup({
   capabilities = capabilities,
@@ -67,27 +62,25 @@ lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
         version = "LuaJIT",
-        path = runtime_path,
       },
-      diagnostics = {
-        globals = { "vim" },
-      },
+      -- Make the server aware of Neovim runtime files
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        },
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+        -- library = vim.api.nvim_get_runtime_file("", true)
       },
     },
   },
 })
-
--- Ocaml
---  lspconfig.ocamllsp.setup({
---    capabilities = capabilities,
---    handlers = handlers,
---  })
 
 -- Rust
 lspconfig.rust_analyzer.setup({
@@ -95,19 +88,18 @@ lspconfig.rust_analyzer.setup({
   handlers = handlers,
   settings = {
     ["rust-analyzer"] = {
-      imports = {
-        granularity = {
-          group = "module",
-        },
-        prefix = "self",
-      },
       cargo = {
-        buildScripts = {
-          enable = true,
+        allFeatures = true,
+      },
+      imports = {
+        group = {
+          enable = false,
         },
       },
-      procMacro = {
-        enable = true,
+      completion = {
+        postfix = {
+          enable = false,
+        },
       },
     },
   },
