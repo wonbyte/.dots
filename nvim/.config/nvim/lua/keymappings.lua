@@ -33,9 +33,6 @@ cnoremap("%s/", "%sm/")
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
--- Netrw
-nnoremap(":E", ":Ex<CR>")
-
 -- Telescope
 nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
 nnoremap("<leader>gb", require("util.builtins").git_branches)
