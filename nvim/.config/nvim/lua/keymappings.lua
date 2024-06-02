@@ -21,9 +21,7 @@ local cnoremap = bind("c")
 
 -- General
 nnoremap("<C-h>", "<cmd>noh<CR>")
-
 nnoremap("<space>,", ":set invlist<CR>")
-
 nnoremap("<F1>", "<Nop>")
 inoremap("<F1>", "<Nop>")
 
@@ -34,17 +32,16 @@ cnoremap("%s/", "%sm/")
 
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
+
+-- Netrw
+nnoremap(":E", ":Ex<CR>")
+
 -- Telescope
 nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
-
 nnoremap("<leader>gb", require("util.builtins").git_branches)
-
 nnoremap("<leader>gc", require("telescope.builtin").git_commits)
-
 nnoremap("<leader>gs", require("telescope.builtin").git_status)
-
 nnoremap("<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-
 nnoremap("<leader>ff", function()
   require("telescope.builtin").find_files({
     file_ignore_patterns = {
@@ -55,13 +52,9 @@ nnoremap("<leader>ff", function()
     },
   })
 end)
-
 nnoremap("<leader>fg", require("telescope.builtin").live_grep)
-
 nnoremap("<leader>cb", require("telescope.builtin").buffers)
-
 nnoremap("<leader>gw", require("telescope.builtin").grep_string)
-
 nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 
 -- Tests
@@ -83,7 +76,11 @@ end)
 
 -- Inlay On/Off
 nnoremap("<leader>h", function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({
-    bufnr = 0,
-  }))
+  local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+  vim.lsp.inlay_hint.enable(not enabled)
+  if enabled then
+    vim.notify("Hints disabled")
+  else
+    vim.notify("Hints enabled")
+  end
 end)
