@@ -42,17 +42,6 @@ local handlers = {
 lspconfig.clangd.setup({
   capabilities = capabilities,
   handlers = handlers,
-  settings = {
-    clangd = {
-      cmd = {
-        "clangd",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--clang-tidy",
-        "--header-insertion=iwyu",
-      },
-    },
-  },
 })
 
 -- Lua
