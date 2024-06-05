@@ -19,9 +19,6 @@ require("lazy").setup("plugins")
 -- Settings
 require("settings")
 
--- Lsp
-require("lsp")
-
 -- Keymappings
 require("keymappings")
 

@@ -10,17 +10,12 @@ opt.background = "dark"
 opt.completeopt = { "menu", "menuone", "noselect" }
 
 opt.number = true
-
 opt.relativenumber = true
-
 opt.scrolloff = 8
-
 opt.cmdheight = 1
 
 opt.swapfile = false
-
 opt.backup = false
-
 opt.undofile = false
 
 opt.shortmess:append("c")
