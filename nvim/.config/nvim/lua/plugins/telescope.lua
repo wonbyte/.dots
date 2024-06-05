@@ -1,5 +1,4 @@
 return {
-  -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
@@ -39,8 +38,6 @@ return {
       telescope.load_extension("fzf")
     end,
   },
-
-  -- Telescope FZF
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",

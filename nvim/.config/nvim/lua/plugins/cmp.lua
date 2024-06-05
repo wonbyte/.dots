@@ -1,5 +1,4 @@
 return {
-  -- Cmp
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
