@@ -17,6 +17,9 @@ abbr v nvim
 abbr vi nvim
 abbr vim nvim
 
+# opam configuration
+source /Users/gps/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
 # TokyoNight Color Palette
 set -l foreground c0caf5
 set -l selection 283457
