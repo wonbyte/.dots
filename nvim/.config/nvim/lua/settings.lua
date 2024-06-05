@@ -1,8 +1,6 @@
 local g = vim.g
 local opt = vim.opt
 
-g.mapleader = " "
-
 g.netrw_browse_split = 0
 g.netrw_banner = 0
 g.netrw_winsize = 25
@@ -41,7 +39,6 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.shiftround = true
-opt.smartcase = true
 
 opt.listchars = {
   space = "⋅",
