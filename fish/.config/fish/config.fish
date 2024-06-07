@@ -2,6 +2,7 @@
 set -gx DOTFILES $HOME/.dots
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
+set -gx GOPATH $HOME/.go
 
 # Disable greeting
 set fish_greeting ""
@@ -10,6 +11,7 @@ set fish_greeting ""
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
+fish_add_path $GOPATH/bin
 
 # Aliases
 abbr clr clear

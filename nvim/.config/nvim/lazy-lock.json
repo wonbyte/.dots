@@ -22,5 +22,6 @@
   "tokyonight.nvim": { "branch": "main", "commit": "02e9028fe3560f38363c2d38f1c87e45eb04fdb3" },
   "vim-vsnip": { "branch": "master", "commit": "02a8e79295c9733434aab4e0e2b8c4b7cea9f3a9" },
   "vim-vsnip-integ": { "branch": "master", "commit": "1914e72cf3de70df7f5dde476cd299aba2440aef" },
+  "vscode-go": { "branch": "master", "commit": "540e146da867f42298ccdac782e4e163fec16b0d" },
   "vscode-rust": { "branch": "master", "commit": "0c49e2bd1ba95ebdbfdf911e8ca609c2be096027" }
 }
