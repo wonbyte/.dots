@@ -1,9 +1,10 @@
 local g = vim.g
 local opt = vim.opt
 
+-- reuse the same window when browsing
 g.netrw_browse_split = 0
+-- suppress the banner
 g.netrw_banner = 0
-g.netrw_winsize = 25
 
 opt.background = "dark"
 
@@ -18,14 +19,14 @@ opt.swapfile = false
 opt.backup = false
 opt.undofile = false
 
-opt.shortmess:append("c")
-
+-- ignore case in search
 opt.ignorecase = true
 opt.smartcase = true
 
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 
+-- use clipboard for all operations
 opt.clipboard = "unnamedplus"
 
 opt.tabstop = 4
@@ -42,6 +43,3 @@ opt.listchars = {
   precedes = "«",
   trail = "•",
 }
-
-opt.wildmode = { "longest", "list", "full" }
-opt.wildignore = { ".git/*", "opam/*", "target/*", "^tmp$" }
