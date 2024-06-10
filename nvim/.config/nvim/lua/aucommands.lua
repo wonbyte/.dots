@@ -36,9 +36,17 @@ augroup("setIndent", { clear = true })
 autocmd("Filetype", {
   group = "setIndent",
   pattern = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "json",
     "ocaml",
     "ocamlinterface",
-    "json",
+    "react",
+    "scss",
+    "tsx",
+    "typescript",
     "xml",
     "xhtml",
     "yaml",
