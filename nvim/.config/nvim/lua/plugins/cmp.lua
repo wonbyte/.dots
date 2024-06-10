@@ -39,7 +39,7 @@ return {
 
       cmp.setup({
         completion = {
-          autocomplete = false,
+          completion = { autocomplete = { cmp.TriggerEvent.TextChanged } },
         },
         window = {
           completion = cmp.config.window.bordered(),
