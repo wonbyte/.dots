@@ -29,5 +29,8 @@ return {
         lualine_z = { "location" },
       },
     },
+    config = function()
+      require("lualine").setup({})
+    end,
   },
 }
