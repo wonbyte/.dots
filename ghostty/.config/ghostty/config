@@ -1,0 +1,43 @@
+# Ghostty theme
+theme = tokyonight-storm
+background-opacity = 1.0
+
+# Font family
+font-family = Noto Sans Mono
+font-style = Regular
+font-style-italic = Regular Italic
+font-style-bold = Bold
+font-style-bold-italic = Bold Italic
+
+# Font size
+font-size = 18
+
+# Opacity of split windows
+unfocused-split-opacity = 0.97
+
+# Cursor style
+cursor-style-blink = true
+
+# Clipboard settings
+clipboard-read = allow
+clipboard-write = allow
+
+# Enable shell integration auto-injection
+shell-integration = fish
+
+# Allow option to work as alt on macos
+macos-option-as-alt = true
+
+# Always show ghostty as the title
+title = ghostty
+
+# Quit after the last window is closed.
+quit-after-last-window-closed = true
+
+# Window size
+window-width = 90
+window-height = 30
+
+window-padding-balance = true
+window-padding-x = 0
+window-padding-y = 0
