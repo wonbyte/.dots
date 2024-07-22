@@ -13,6 +13,11 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 
+# Compilers to find llvm
+set -gx LDFLAGS "-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+
+set -gx CPPFLAGS "-I/opt/homebrew/opt/llvm/include"
+
 # Aliases
 abbr clr clear
 abbr v nvim
