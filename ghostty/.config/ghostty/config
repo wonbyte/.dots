@@ -1,6 +1,5 @@
 # Ghostty theme
-#theme = tokyonight-storm
-theme = wez
+theme = tokyonight-storm
 background-opacity = 1.0
 
 # Font family
