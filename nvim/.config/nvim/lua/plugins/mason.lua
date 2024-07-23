@@ -19,7 +19,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      -- Capabilities
+      -- Add additional capabilities supported by nvim-cmp
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Diagnostics
@@ -55,6 +55,7 @@ return {
           { border = border }
         ),
       }
+
 
       -- C/C++
       lspconfig.clangd.setup({
