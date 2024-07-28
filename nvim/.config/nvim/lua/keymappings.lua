@@ -26,6 +26,7 @@ nnoremap("<F1>", "<Nop>")
 inoremap("<F1>", "<Nop>")
 
 -- https://vim.fandom.com/wiki/Simplifying_regular_expressions_using_magic_and_no-magic
+-- "very magic" (less escaping needed) regexes by default
 nnoremap("?", "?\\v")
 nnoremap("/", "/\\v")
 cnoremap("%s/", "%sm/")
