@@ -9,14 +9,20 @@ g.netrw_banner = 0
 
 opt.background = "dark"
 
-opt.completeopt = { "menu", "menuone", "noselect" }
+-- Better completion
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force user to select one from the menu
+opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- sweet sweet relative line numbers
 opt.relativenumber = true
 -- and show the absolute line number for the current line
 opt.number = true
 
-opt.scrolloff = 8
+-- keep more context on screen while scrolling
+opt.scrolloff = 2
+-- more command line room
 opt.cmdheight = 1
 
 opt.swapfile = false
