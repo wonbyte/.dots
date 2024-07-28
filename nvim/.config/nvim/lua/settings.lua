@@ -11,7 +11,6 @@ opt.background = "dark"
 
 opt.completeopt = { "menu", "menuone", "noselect" }
 
-
 -- sweet sweet relative line numbers
 opt.relativenumber = true
 -- and show the absolute line number for the current line
@@ -31,7 +30,7 @@ opt.smartcase = true
 
 -- more useful diffs (nvim -d)
 --- by ignoring whitespace
-vim.opt.diffopt:append('iwhite')
+vim.opt.diffopt:append("iwhite")
 
 -- always draw sign column. prevents buffer moving when adding/deleting sign
 opt.signcolumn = "yes"
@@ -40,7 +39,10 @@ opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 
 --- except in Rust where the rule is 100 characters
-api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
+api.nvim_create_autocmd(
+  "Filetype",
+  { pattern = "rust", command = "set colorcolumn=100" }
+)
 
 -- use clipboard for all operations
 opt.clipboard = "unnamedplus"
@@ -62,4 +64,3 @@ opt.listchars = {
   precedes = "«",
   trail = "•",
 }
-
