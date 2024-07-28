@@ -7,18 +7,18 @@ return {
         options = {
           theme = {
             normal = {
-              a = { fg = '#000000', bg = '#f5c2e7', gui = 'bold' },
-              b = { fg = '#ffffff', bg = '#302d41' },
-              c = { fg = '#ffffff', bg = '#302d41' },
+              a = { fg = "#000000", bg = "#f5c2e7", gui = "bold" },
+              b = { fg = "#ffffff", bg = "#302d41" },
+              c = { fg = "#ffffff", bg = "#302d41" },
             },
-            insert = { a = { fg = '#000000', bg = '#97dbcf', gui = 'bold' } },
-            visual = { a = { fg = '#000000', bg = '#ffb86c', gui = 'bold' } },
-            replace = { a = { fg = '#000000', bg = '#ff5555', gui = 'bold' } },
-            command = { a = { fg = '#000000', bg = '#bf9cf2', gui = 'bold' } },
+            insert = { a = { fg = "#000000", bg = "#97dbcf", gui = "bold" } },
+            visual = { a = { fg = "#000000", bg = "#f5dfa9", gui = "bold" } },
+            replace = { a = { fg = "#000000", bg = "#ff5555", gui = "bold" } },
+            command = { a = { fg = "#000000", bg = "#bf9cf2", gui = "bold" } },
             inactive = {
-              a = { fg = '#ffffff', bg = '#302d41', gui = 'bold' },
-              b = { fg = '#ffffff', bg = '#302d41' },
-              c = { fg = '#ffffff', bg = '#302d41' },
+              a = { fg = "#ffffff", bg = "#302d41", gui = "bold" },
+              b = { fg = "#ffffff", bg = "#302d41" },
+              c = { fg = "#ffffff", bg = "#302d41" },
             },
           },
           component_separators = "",
