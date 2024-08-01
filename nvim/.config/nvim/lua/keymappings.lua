@@ -14,6 +14,22 @@ local function bind(op, outer_opts)
   end
 end
 
+local function toggle_qf()
+  local qf_open = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      qf_open = true
+      break
+    end
+  end
+  if qf_open then
+    vim.cmd('cclose')
+  else
+    vim.diagnostic.setqflist()
+    vim.cmd('copen')
+  end
+end
+
 local nnoremap = bind("n")
 local vnoremap = bind("v")
 local inoremap = bind("i")
@@ -34,6 +50,9 @@ cnoremap("%s/", "%sm/")
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
+-- Quickfix
+nnoremap("<leader>q", toggle_qf)
+
 -- Telescope
 nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
 nnoremap("<leader>gb", require("util.builtins").git_branches)
@@ -44,6 +63,7 @@ nnoremap("<leader>ff", function()
   require("telescope.builtin").find_files({
     file_ignore_patterns = {
       "_build",
+      "src/build",
       ".git",
       "node_modules",
       "_opam",
