@@ -34,8 +34,7 @@ opt.ignorecase = true
 -- unless uppercase in search term
 opt.smartcase = true
 
--- more useful diffs (nvim -d)
---- by ignoring whitespace
+-- more useful diffs (nvim -d) by ignoring whitespace
 vim.opt.diffopt:append("iwhite")
 
 -- always draw sign column. prevents buffer moving when adding/deleting sign
