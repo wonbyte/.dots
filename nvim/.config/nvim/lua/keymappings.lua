@@ -23,10 +23,10 @@ local function toggle_qf()
     end
   end
   if qf_open then
-    vim.cmd('cclose')
+    vim.cmd("cclose")
   else
     vim.diagnostic.setqflist()
-    vim.cmd('copen')
+    vim.cmd("copen")
   end
 end
 
