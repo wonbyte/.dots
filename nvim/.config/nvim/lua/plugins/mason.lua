@@ -64,12 +64,6 @@ return {
       lspconfig.clangd.setup({
         capabilities = capabilities,
         handlers = handlers,
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--clang-tidy",
-          "--log=verbose",
-        },
       })
 
       -- Go
