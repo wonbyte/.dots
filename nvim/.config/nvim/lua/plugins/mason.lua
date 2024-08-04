@@ -30,7 +30,7 @@ return {
           header = "",
           prefix = "",
         },
-        virtual_text = false,
+        virtual_text = true,
         signs = true,
         underline = false,
         update_in_insert = false,
@@ -64,6 +64,7 @@ return {
       lspconfig.clangd.setup({
         capabilities = capabilities,
         handlers = handlers,
+        -- cmd = { "/opt/homebrew/opt/llvm/bin/clangd" },
       })
 
       -- Go
