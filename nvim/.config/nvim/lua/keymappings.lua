@@ -63,6 +63,7 @@ nnoremap("<leader>ff", function()
   require("telescope.builtin").find_files({
     file_ignore_patterns = {
       "_build",
+      "build",
       ".git",
       "node_modules",
       "_opam",
