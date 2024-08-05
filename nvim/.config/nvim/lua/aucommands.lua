@@ -66,3 +66,17 @@ autocmd({ "FileType" }, {
   desc = "Disable automatic comment indentation for OCaml files",
   command = "setlocal indentexpr=",
 })
+
+-- Create a group for quickfix update on save
+local qf_group = augroup("QuickfixUpdate", { clear = true })
+
+-- Add an autocommand to update quickfix list on save
+autocmd("BufWritePost", {
+  group = qf_group,
+  pattern = "*",
+  callback = function()
+    -- Update the quickfix list without affecting the open state of the quickfix
+    -- window.
+    vim.diagnostic.setqflist({ open = false })
+  end,
+})
