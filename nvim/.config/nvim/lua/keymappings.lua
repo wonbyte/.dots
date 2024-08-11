@@ -37,7 +37,7 @@ local cnoremap = bind("c")
 
 -- General
 nnoremap("<C-h>", "<cmd>noh<CR>")
-nnoremap("<space>,", ":set invlist<CR>")
+nnoremap("<leader>,", ":set invlist<CR>")
 nnoremap("<F1>", "<Nop>")
 inoremap("<F1>", "<Nop>")
 
@@ -78,7 +78,7 @@ nnoremap("<leader>gw", require("telescope.builtin").grep_string)
 nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 
 -- Tests
-nnoremap(",t", "<Plug>PlenaryTestFile")
+nnoremap("<leader>t", "<Plug>PlenaryTestFile")
 
 -- Cmp On/Off
 nnoremap("<Leader>cm", function()
