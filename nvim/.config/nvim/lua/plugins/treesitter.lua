@@ -31,6 +31,7 @@ return {
           "vim",
           "vimdoc",
           "yaml",
+          "zig",
         },
         highlight = {
           enable = {
@@ -60,6 +61,7 @@ return {
             "vim",
             "vimdoc",
             "yaml",
+            "zig",
           },
         },
       })
