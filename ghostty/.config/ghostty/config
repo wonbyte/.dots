@@ -10,10 +10,7 @@ font-style-bold = Bold
 font-style-bold-italic = Bold Italic
 
 # Font size
-font-size = 16
-
-# Opacity of split windows
-unfocused-split-opacity = 0.97
+font-size = 14
 
 # Cursor style
 cursor-style-blink = true
@@ -34,10 +31,5 @@ title = ghostty
 # Quit after the last window is closed.
 quit-after-last-window-closed = true
 
-# Window size
-window-width = 90
-window-height = 30
-
-window-padding-balance = true
-window-padding-x = 0
-window-padding-y = 0
+# https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig#L686
+# window-padding-balance = true
