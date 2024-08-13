@@ -38,6 +38,7 @@ local cnoremap = bind("c")
 -- General
 nnoremap("<C-h>", "<cmd>noh<CR>")
 nnoremap("<leader>,", ":set invlist<CR>")
+nnoremap("<leader>o", ":Ex<CR>")
 nnoremap("<F1>", "<Nop>")
 inoremap("<F1>", "<Nop>")
 
