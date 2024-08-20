@@ -25,9 +25,6 @@ shell-integration = fish
 # Allow option to work as alt on macos
 macos-option-as-alt = true
 
-# Always show ghostty as the title
-title = ghostty
-
 # Quit after the last window is closed.
 quit-after-last-window-closed = true
 
