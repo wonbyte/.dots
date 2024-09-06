@@ -140,7 +140,7 @@ return {
       })
 
       -- Typescript
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
         handlers = handlers,
       })
