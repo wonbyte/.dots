@@ -66,6 +66,12 @@ return {
         handlers = handlers,
       })
 
+      -- Gleam
+      require("lspconfig").gleam.setup({
+        capabilities = capabilities,
+        handlers = handlers,
+      })
+
       -- Go
       lspconfig.gopls.setup({
         capabilities = capabilities,
