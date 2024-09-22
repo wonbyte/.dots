@@ -1,5 +1,3 @@
-local cmp = require("cmp")
-
 -- Global helper
 P = function(v)
   print(vim.inspect(v))
@@ -81,8 +79,9 @@ nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 -- Tests
 nnoremap("<leader>t", "<Plug>PlenaryTestFile")
 
--- Cmp On/Off
+-- Cmp On/Off toggle
 nnoremap("<Leader>cm", function()
+  local cmp = require("cmp")
   local current_setting = cmp.get_config().completion.autocomplete
   if current_setting and #current_setting > 0 then
     cmp.setup({ completion = { autocomplete = false } })
