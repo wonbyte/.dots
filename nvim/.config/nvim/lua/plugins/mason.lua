@@ -66,12 +66,6 @@ return {
         handlers = handlers,
       })
 
-      -- Gleam
-      require("lspconfig").gleam.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-      })
-
       -- Go
       lspconfig.gopls.setup({
         capabilities = capabilities,
@@ -112,16 +106,6 @@ return {
         },
       })
 
-      -- Ocaml
-      lspconfig.ocamllsp.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-        settings = {
-          codelens = { enable = true },
-          inlayHints = { enable = true },
-        },
-      })
-
       -- Rust
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
@@ -147,12 +131,6 @@ return {
 
       -- Typescript
       lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-      })
-
-      -- zig
-      lspconfig.zls.setup({
         capabilities = capabilities,
         handlers = handlers,
       })
