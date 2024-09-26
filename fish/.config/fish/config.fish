@@ -8,7 +8,7 @@ set -gx GOPATH $HOME/.go
 set fish_greeting ""
 
 # Paths
-set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $GOPATH/bin /opt/homebrew/bin /opt/homebrew/opt/llvm/bin/
+set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $GOPATH/bin /opt/homebrew/bin
 
 # Aliases
 abbr clr clear
