@@ -60,12 +60,6 @@ return {
         ),
       }
 
-      -- C/C++
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-      })
-
       -- Go
       lspconfig.gopls.setup({
         capabilities = capabilities,
@@ -110,23 +104,6 @@ return {
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
         handlers = handlers,
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              allFeatures = true,
-            },
-            imports = {
-              group = {
-                enable = false,
-              },
-            },
-            completion = {
-              postfix = {
-                enable = false,
-              },
-            },
-          },
-        },
       })
 
       -- Typescript
