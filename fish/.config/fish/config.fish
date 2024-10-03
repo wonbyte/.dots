@@ -8,10 +8,7 @@ set -Ux GOPATH $HOME/.go
 set -U fish_greeting ""
 
 # Paths
-set -U fish_user_paths $HOME/.local/bin
-set -U fish_user_paths $fish_user_paths $HOME/.cargo/bin
-set -U fish_user_paths $fish_user_paths $GOPATH/bin
-set -U fish_user_paths $fish_user_paths /opt/homebrew/bin
+set -U fish_user_paths /opt/homebrew/opt/llvm/bin $HOME/.local/bin $HOME/.cargo/bin $GOPATH/bin /opt/homebrew/bin
 
 # Aliases
 abbr clr clear
@@ -25,7 +22,6 @@ function bbic
     and brew bundle install --cleanup --file=~/.dots/brew/Brewfile --no-lock
     and brew upgrade
 end
-
 
 # Prompt
 starship init fish | source
