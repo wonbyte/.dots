@@ -43,12 +43,6 @@ opt.signcolumn = "yes"
 -- show a column at 80 characters as a guide for long lines
 opt.colorcolumn = "80"
 
---- except in Rust where the rule is 100 characters
-api.nvim_create_autocmd(
-  "Filetype",
-  { pattern = "rust", command = "set colorcolumn=100" }
-)
-
 -- use clipboard for all operations
 opt.clipboard = "unnamedplus"
 
@@ -69,3 +63,6 @@ opt.listchars = {
   precedes = "«",
   trail = "•",
 }
+
+-- Zig
+g.zig_fmt_parse_errors = false
