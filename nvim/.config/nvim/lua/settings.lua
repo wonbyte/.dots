@@ -63,6 +63,3 @@ opt.listchars = {
   precedes = "«",
   trail = "•",
 }
-
--- Zig
-g.zig_fmt_parse_errors = false
