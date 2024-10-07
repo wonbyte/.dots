@@ -6,11 +6,13 @@ return {
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "bash",
+          "c",
           "css",
           "dockerfile",
           "fish",
           "html",
           "go",
+          "javascript",
           "json",
           "jsonc",
           "lua",
@@ -26,11 +28,13 @@ return {
         highlight = {
           enable = {
             "bash",
+            "c",
             "css",
             "dockerfile",
             "fish",
             "html",
             "go",
+            "javascript",
             "json",
             "jsonc",
             "lua",
