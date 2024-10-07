@@ -8,6 +8,3 @@ nvm.fish
 # nvim
 packer_compiled.lua
 .nvimlog
-
-#zig
-bin/.local/bin/zig
