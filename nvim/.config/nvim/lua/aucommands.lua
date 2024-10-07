@@ -37,34 +37,15 @@ autocmd("Filetype", {
   group = "setIndent",
   pattern = {
     "css",
-    "graphql",
     "html",
     "javascript",
     "json",
-    "ocaml",
-    "ocamlinterface",
-    "react",
     "scss",
-    "tsx",
-    "typescript",
     "xml",
     "xhtml",
     "yaml",
   },
   command = "setlocal shiftwidth=2 tabstop=2",
-})
-
--- https://github.com/dmmulroy/dotfiles/blob/main/.config/nvim/after/ftdetect/ocamlinterface.lua
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.mli",
-  desc = "Detect and set the proper file type for Ocaml interface files",
-  command = "set filetype=ocamlinterface",
-})
-
-autocmd({ "FileType" }, {
-  pattern = "ocaml",
-  desc = "Disable automatic comment indentation for OCaml files",
-  command = "setlocal indentexpr=",
 })
 
 -- Create a group for quickfix update on save
