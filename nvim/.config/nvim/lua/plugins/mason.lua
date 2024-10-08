@@ -60,8 +60,8 @@ return {
         ),
       }
 
+      -- C/C++
       lspconfig.clangd.setup({
-        cmd = { "clangd" },
         capabilities = capabilities,
         handlers = handlers,
       })
