@@ -64,9 +64,6 @@ nnoremap("<leader>ff", function()
       "_build",
       "build",
       ".git",
-      "node_modules",
-      "_opam",
-      "target",
       "^tmp$",
     },
   })
