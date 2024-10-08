@@ -60,6 +60,12 @@ return {
         ),
       }
 
+      lspconfig.clangd.setup({
+        cmd = { "clangd" },
+        capabilities = capabilities,
+        handlers = handlers,
+      })
+
       -- Go
       lspconfig.gopls.setup({
         capabilities = capabilities,
