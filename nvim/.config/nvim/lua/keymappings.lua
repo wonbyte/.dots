@@ -76,21 +76,6 @@ nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 -- Tests
 nnoremap("<leader>t", "<Plug>PlenaryTestFile")
 
--- Cmp On/Off toggle
-nnoremap("<Leader>cm", function()
-  local cmp = require("cmp")
-  local current_setting = cmp.get_config().completion.autocomplete
-  if current_setting and #current_setting > 0 then
-    cmp.setup({ completion = { autocomplete = false } })
-    vim.notify("Cmp disabled")
-  else
-    cmp.setup({
-      completion = { autocomplete = { cmp.TriggerEvent.TextChanged } },
-    })
-    vim.notify("Cmp enabled")
-  end
-end)
-
 -- Inlay On/Off
 nnoremap("<leader>h", function()
   local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
