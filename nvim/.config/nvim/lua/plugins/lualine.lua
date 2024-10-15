@@ -13,7 +13,7 @@ return {
           lualine_x = {},
           lualine_y = { "filetype", "progress" },
           lualine_z = {
-            { "location"},
+            { "location" },
           },
         },
         inactive_sections = {
