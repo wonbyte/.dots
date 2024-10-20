@@ -103,6 +103,16 @@ return {
         },
       })
 
+      -- Ocaml
+      lspconfig.ocamllsp.setup({
+        capabilities = capabilities,
+        handlers = handlers,
+        settings = {
+          codelens = { enable = true },
+          inlayHints = { enable = true },
+        },
+      })
+
       -- Rust
       lspconfig.rust_analyzer.setup({
         settings = {
