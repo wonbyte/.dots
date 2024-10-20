@@ -8,7 +8,7 @@ set -Ux GOPATH $HOME/.go
 set -U fish_greeting ""
 
 # Paths
-set -U fish_user_paths /opt/homebrew/opt/llvm/bin $HOME/.local/bin $HOME/.cargo/bin $GOPATH/bin $HOME/.dune/bin /opt/homebrew/bin
+set -U fish_user_paths /opt/homebrew/opt/llvm/bin $HOME/.local/bin $HOME/.cargo/bin $GOPATH/bin /opt/homebrew/bin
 
 # Aliases
 abbr clr clear
@@ -25,6 +25,3 @@ end
 
 # Prompt
 starship init fish | source
-
-# dune
-set --export PATH /Users/gski/.dune/bin $PATH
