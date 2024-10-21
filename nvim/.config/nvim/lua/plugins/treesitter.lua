@@ -17,6 +17,8 @@ return {
           "jsonc",
           "lua",
           "markdown",
+          "ocaml",
+          "ocaml_interface",
           "rust",
           "scss",
           "sql",
@@ -30,6 +32,7 @@ return {
         },
         indent = {
           enable = true,
+          disable = { "ocaml", "ocaml_interface" },
         },
         autopairs = {
           enable = true,
