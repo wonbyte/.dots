@@ -22,11 +22,8 @@ clipboard-write = allow
 # Enable shell integration auto-injection
 shell-integration = fish
 
-# Allow option to work as alt on macos
-macos-option-as-alt = true
-
 # Quit after the last window is closed.
 quit-after-last-window-closed = true
 
 # https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig#L686
-# window-padding-balance = true
+window-padding-balance = true
