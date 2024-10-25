@@ -72,3 +72,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.cmd(":set filetype=ocamlinterface")
   end,
 })
+
+-- Properly set the file type for header files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.h",
+  desc = "Detect and set the proper file type for header files",
+  callback = function()
+    vim.cmd(":set filetype=c")
+  end,
+})
