@@ -27,3 +27,5 @@ quit-after-last-window-closed = true
 
 # https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig#L686
 window-padding-balance = true
+
+macos-titlebar-proxy-icon = hidden
