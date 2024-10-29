@@ -1,13 +1,11 @@
 local g = vim.g
-local opt = vim.opt
+local o = vim.opt
 local api = vim.api
 
 -- reuse the same window when browsing
 g.netrw_browse_split = 0
 -- suppress the banner
 g.netrw_banner = 0
-
-opt.background = "dark"
 
 -- Better completion
 -- menuone: popup even when there's only one match
