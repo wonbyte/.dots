@@ -64,7 +64,6 @@ nnoremap("<leader>ff", function()
       "_build",
       "build",
       ".git",
-      "target",
       "^tmp$",
     },
   })
