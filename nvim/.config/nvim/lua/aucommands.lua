@@ -40,8 +40,6 @@ autocmd("Filetype", {
     "html",
     "javascript",
     "json",
-    "ocaml",
-    "ocaml_interace",
     "scss",
     "xml",
     "xhtml",
@@ -61,15 +59,6 @@ autocmd("BufWritePost", {
     -- Update the quickfix list without affecting the open state of the quickfix
     -- window.
     vim.diagnostic.setqflist({ open = false })
-  end,
-})
-
--- Properly set the file type for ocaml interface files
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.mli",
-  desc = "Detect and set the proper file type for ocaml interface files",
-  callback = function()
-    vim.cmd(":set filetype=ocamlinterface")
   end,
 })
 
