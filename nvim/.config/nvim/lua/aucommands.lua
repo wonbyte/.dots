@@ -23,7 +23,9 @@ autocmd("TextYankPost", {
 })
 
 -- Handle tmpl
+local go_tmpl = augroup("GoTmpl", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
+  group = go_tmpl,
   pattern = "*.tmpl",
   desc = "Detect and set the proper file type for tmpl files",
   callback = function()

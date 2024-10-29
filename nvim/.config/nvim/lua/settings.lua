@@ -1,63 +1,51 @@
-local g = vim.g
-local opt = vim.opt
-local api = vim.api
-
 -- reuse the same window when browsing
-g.netrw_browse_split = 0
+vim.g.netrw_browse_split = 0
 -- suppress the banner
-g.netrw_banner = 0
+vim.g.netrw_banner = 0
 
 -- Better completion
 -- menuone: popup even when there's only one match
 -- noinsert: Do not insert text until a selection is made
 -- noselect: Do not select, force user to select one from the menu
-opt.completeopt = { "menuone", "noinsert", "noselect" }
+-- Completion settings
+vim.o.completeopt = "menuone,noinsert,noselect"
 
--- sweet sweet relative line numbers
-opt.relativenumber = true
--- and show the absolute line number for the current line
-opt.number = true
+-- Line numbers
+vim.o.relativenumber = true
+vim.o.number = true
 
--- keep more context on screen while scrolling
-opt.scrolloff = 2
--- more command line room
-opt.cmdheight = 1
+-- Scrolling context and command line height
+vim.o.scrolloff = 2
+vim.o.cmdheight = 1
 
-opt.swapfile = false
-opt.backup = false
-opt.undofile = false
+-- Disable swap, backup, and undo files
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = false
 
--- case-insensitive search/replace
-opt.ignorecase = true
--- unless uppercase in search term
-opt.smartcase = true
+-- Search settings
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
--- more useful diffs (nvim -d) by ignoring whitespace
-vim.opt.diffopt:append("iwhite")
+-- Diff settings
+vim.o.diffopt = vim.o.diffopt .. ",iwhite"
 
--- always draw sign column. prevents buffer moving when adding/deleting sign
-opt.signcolumn = "yes"
+-- Always show the sign column to prevent layout shifts
+vim.o.signcolumn = "yes"
 
--- show a column at 80 characters as a guide for long lines
-opt.colorcolumn = "80"
+-- Column guide at 80 characters
+vim.o.colorcolumn = "80"
 
--- use clipboard for all operations
-opt.clipboard = "unnamedplus"
+-- Use system clipboard for all operations
+vim.o.clipboard = "unnamedplus"
 
--- tabs
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.smartindent = true
-opt.shiftround = true
+-- Tab and indentation settings
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.shiftround = true
 
--- show more hidden characters
--- also, show tabs nicer
-opt.listchars = {
-  tab = "^ ",
-  nbsp = "¬",
-  extends = "»",
-  precedes = "«",
-  trail = "•",
-}
+-- Display hidden characters
+vim.o.listchars = "tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•"
