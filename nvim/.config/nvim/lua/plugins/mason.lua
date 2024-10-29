@@ -57,12 +57,6 @@ return {
         ),
       }
 
-      -- C/C++
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-      })
-
       -- Go
       lspconfig.gopls.setup({
         capabilities = capabilities,
@@ -101,19 +95,6 @@ return {
             },
           },
         },
-      })
-
-      -- Rust
-      lspconfig.rust_analyzer.setup({
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              allFeatures = true,
-            },
-          },
-        },
-        capabilities = capabilities,
-        handlers = handlers,
       })
 
       -- Use LspAttach autocommand to only map the following keys
