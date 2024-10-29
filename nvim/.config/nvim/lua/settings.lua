@@ -1,5 +1,5 @@
 local g = vim.g
-local o = vim.opt
+local opt = vim.opt
 local api = vim.api
 
 -- reuse the same window when browsing
