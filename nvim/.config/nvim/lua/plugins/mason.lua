@@ -116,16 +116,6 @@ return {
         handlers = handlers,
       })
 
-      -- Ocaml
-      lspconfig.ocamllsp.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-        settings = {
-          codelens = { enable = true },
-          inlayHints = { enable = true },
-        },
-      })
-
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd("LspAttach", {
