@@ -8,7 +8,7 @@ return {
       require("gruvbox").setup({
         contrast = "hard",
       })
-      vim.opt.background = "dark"
+      vim.o.background = "dark"
       vim.cmd("colorscheme gruvbox")
     end,
   },
