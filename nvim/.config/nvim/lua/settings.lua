@@ -48,4 +48,4 @@ vim.o.smartindent = true
 vim.o.shiftround = true
 
 -- Display hidden characters
-vim.o.listchars = "tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•"
+vim.o.listchars = [[tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•]]

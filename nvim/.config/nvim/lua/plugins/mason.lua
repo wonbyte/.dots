@@ -19,22 +19,20 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      -- Diagnostics
+      -- Diagnostics Configuration
       vim.diagnostic.config({
         float = {
           border = "rounded",
-          source = true,
-          header = "",
-          prefix = "",
+          source = "true",
         },
-        virtual_text = false,
-        signs = false,
-        underline = false,
-        update_in_insert = false,
-        severity_sort = true,
+        virtual_text = false, -- Disable inline virtual text
+        signs = false, -- Enable diagnostic signs
+        underline = false, -- Show underlines for diagnostics
+        update_in_insert = false, -- Don't update diagnostics while typing
+        severity_sort = true, -- Sort diagnostics by severity
       })
 
-      -- Borders
+      -- Float Window Borders
       local border = {
         { "🭽", "FloatBorder" },
         { "▔", "FloatBorder" },
@@ -57,56 +55,45 @@ return {
         ),
       }
 
-      -- Go
+      -- Set up capabilities (optional, required if using completion plugins)
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+      -- Go Language Server Configuration (gopls)
       lspconfig.gopls.setup({
         capabilities = capabilities,
         handlers = handlers,
         settings = {
           gopls = {
-            analyses = {
-              unusedparams = true,
-            },
+            analyses = { unusedparams = true },
           },
         },
       })
 
-      -- Lua
+      -- Lua Language Server Configuration (lua_ls)
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
         handlers = handlers,
         settings = {
           Lua = {
-            runtime = {
-              -- Tell the language server which version of Lua you're using
-              -- (most likely LuaJIT in the case of Neovim)
-              version = "LuaJIT",
-            },
-            -- Make the server aware of Neovim runtime files
+            runtime = { version = "LuaJIT" }, -- LuaJIT for Neovim
             workspace = {
               checkThirdParty = false,
               library = {
                 vim.env.VIMRUNTIME,
-                -- Depending on the usage, you might want to add additional paths here.
-                -- "${3rd}/luv/library"
-                -- "${3rd}/busted/library",
               },
-              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-              -- library = vim.api.nvim_get_runtime_file("", true)
             },
           },
         },
       })
 
-      -- Use LspAttach autocommand to only map the following keys
-      -- after the language server attaches to the current buffer
+      -- LspAttach AutoCommand for Buffer-Local Keybindings
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
         callback = function(ev)
-          -- Enable completion triggered by <c-x><c-o>
+          -- Enable completion with <C-x><C-o>
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-          -- Buffer local mappings.
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
+          -- Buffer-Local Mappings
           local opts = { buffer = ev.buf }
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)

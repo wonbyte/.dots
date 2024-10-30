@@ -1,42 +1,46 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- Remove whitespace on save
+-- Autogroup: Remove trailing whitespace on save
+augroup("RemoveWhitespace", { clear = true })
 autocmd("BufWritePre", {
+  group = "RemoveWhitespace",
   pattern = "*",
-  command = ":%s/\\s\\+$//e",
+  command = [[:%s/\s\+$//e]], -- Avoid error if no match found
 })
 
--- No auto commenting for new lines
+-- Autogroup: Disable auto-commenting for new lines
+augroup("NoAutoComment", { clear = true })
 autocmd("BufEnter", {
+  group = "NoAutoComment",
   pattern = "*",
-  command = "set fo-=cro | setlocal fo-=cro",
+  command = [[setlocal formatoptions-=cro]],
 })
 
--- Highlight on yank
-augroup("YankHighlight", { clear = true })
+-- Autogroup: Highlight text on yank
+local yank_group = augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
-  group = "YankHighlight",
+  group = yank_group,
   callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = "40" })
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 })
   end,
 })
 
--- Handle tmpl
-local go_tmpl = augroup("GoTmpl", { clear = true })
+-- Autogroup: Set filetype for `.tmpl` files
+local tmpl_group = augroup("GoTmpl", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
-  group = go_tmpl,
+  group = tmpl_group,
   pattern = "*.tmpl",
-  desc = "Detect and set the proper file type for tmpl files",
+  desc = "Set filetype to HTML for .tmpl files",
   callback = function()
-    vim.cmd(":set filetype=html")
+    vim.bo.filetype = "html"
   end,
 })
 
--- Set indentation to 2 spaces
-augroup("setIndent", { clear = true })
-autocmd("Filetype", {
-  group = "setIndent",
+-- Autogroup: Set 2-space indentation for certain filetypes
+local indent_group = augroup("SetIndent", { clear = true })
+autocmd("FileType", {
+  group = indent_group,
   pattern = {
     "css",
     "html",
@@ -47,19 +51,18 @@ autocmd("Filetype", {
     "xhtml",
     "yaml",
   },
-  command = "setlocal shiftwidth=2 tabstop=2",
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+  end,
 })
 
--- Create a group for quickfix update on save
+-- Autogroup: Update Quickfix list on save without opening the window
 local qf_group = augroup("QuickfixUpdate", { clear = true })
-
--- Add an autocommand to update quickfix list on save
 autocmd("BufWritePost", {
   group = qf_group,
   pattern = "*",
   callback = function()
-    -- Update the quickfix list without affecting the open state of the quickfix
-    -- window.
     vim.diagnostic.setqflist({ open = false })
   end,
 })

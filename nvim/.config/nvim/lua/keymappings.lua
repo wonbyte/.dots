@@ -13,20 +13,19 @@ local function bind(op, outer_opts)
 end
 
 local function toggle_qf()
-  local qf_open = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win.quickfix == 1 then
-      qf_open = true
-      break
+    -- Check if a Quickfix window is open using vim.iter
+    local qf_open = vim.iter(vim.fn.getwininfo())
+        :find(function(win) return win.quickfix == 1 end) ~= nil
+
+    if qf_open then
+        vim.cmd("cclose")
+    else
+        -- Populate the Quickfix list with diagnostics
+        vim.diagnostic.setqflist()
+        vim.cmd("copen")
     end
-  end
-  if qf_open then
-    vim.cmd("cclose")
-  else
-    vim.diagnostic.setqflist()
-    vim.cmd("copen")
-  end
 end
+
 
 local nnoremap = bind("n")
 local vnoremap = bind("v")
@@ -54,7 +53,7 @@ nnoremap("<leader>q", toggle_qf)
 
 -- Telescope
 nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
-nnoremap("<leader>gb", require("util.builtins").git_branches)
+nnoremap("<leader>gb", require("telescope.builtin").git_branches)
 nnoremap("<leader>gc", require("telescope.builtin").git_commits)
 nnoremap("<leader>gs", require("telescope.builtin").git_status)
 nnoremap("<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
