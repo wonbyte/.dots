@@ -25,11 +25,16 @@ return {
           border = "rounded",
           source = "true",
         },
-        virtual_text = false, -- Disable inline virtual text
-        signs = false, -- Enable diagnostic signs
-        underline = false, -- Show underlines for diagnostics
-        update_in_insert = false, -- Don't update diagnostics while typing
-        severity_sort = true, -- Sort diagnostics by severity
+        -- Disable inline virtual text
+        virtual_text = false,
+        -- Enable diagnostic signs
+        signs = false,
+        -- Show underlines for diagnostics
+        underline = false,
+        -- Don't update diagnostics while typing
+        update_in_insert = false,
+        -- Sort diagnostics by severity
+        severity_sort = true,
       })
 
       -- Float Window Borders

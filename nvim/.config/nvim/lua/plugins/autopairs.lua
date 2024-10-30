@@ -1,10 +1,13 @@
 return {
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter", -- Load when entering insert mode for better performance
+    -- Load when entering insert mode for better performance
+    event = "InsertEnter",
     opts = {
-      disable_filetype = { "TelescopePrompt", "vim" }, -- Prevent conflicts
-      check_ts = true, -- Enable treesitter integration for better pair handling
+      -- Prevent conflicts
+      disable_filetype = { "TelescopePrompt", "vim" },
+      -- Enable treesitter integration for better pair handling
+      check_ts = true,
     },
     config = function(_, opts)
       local npairs = require("nvim-autopairs")

@@ -1,4 +1,3 @@
-local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local M = {}
 

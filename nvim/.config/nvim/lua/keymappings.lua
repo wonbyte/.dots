@@ -13,19 +13,19 @@ local function bind(op, outer_opts)
 end
 
 local function toggle_qf()
-    -- Check if a Quickfix window is open using vim.iter
-    local qf_open = vim.iter(vim.fn.getwininfo())
-        :find(function(win) return win.quickfix == 1 end) ~= nil
+  -- Check if a Quickfix window is open
+  local qf_open = vim.iter(vim.fn.getwininfo()):find(function(win)
+    return win.quickfix == 1
+  end) ~= nil
 
-    if qf_open then
-        vim.cmd("cclose")
-    else
-        -- Populate the Quickfix list with diagnostics
-        vim.diagnostic.setqflist()
-        vim.cmd("copen")
-    end
+  if qf_open then
+    vim.cmd("cclose")
+  else
+    -- Populate the Quickfix list with diagnostics
+    vim.diagnostic.setqflist()
+    vim.cmd("copen")
+  end
 end
-
 
 local nnoremap = bind("n")
 local vnoremap = bind("v")
@@ -57,16 +57,7 @@ nnoremap("<leader>gb", require("telescope.builtin").git_branches)
 nnoremap("<leader>gc", require("telescope.builtin").git_commits)
 nnoremap("<leader>gs", require("telescope.builtin").git_status)
 nnoremap("<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-nnoremap("<leader>ff", function()
-  require("telescope.builtin").find_files({
-    file_ignore_patterns = {
-      "_build",
-      "build",
-      ".git",
-      "^tmp$",
-    },
-  })
-end)
+nnoremap("<leader>ff", require("telescope.builtin").find_files)
 nnoremap("<leader>fg", require("telescope.builtin").live_grep)
 nnoremap("<leader>cb", require("telescope.builtin").buffers)
 nnoremap("<leader>gw", require("telescope.builtin").grep_string)
@@ -75,7 +66,7 @@ nnoremap("<leader>hh", ":Telescope help_tags<CR>")
 -- Tests
 nnoremap("<leader>t", "<Plug>PlenaryTestFile")
 
--- Inlay On/Off
+-- Inlay Hints On/Off
 nnoremap("<leader>h", function()
   local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
   vim.lsp.inlay_hint.enable(not enabled)
