@@ -61,7 +61,7 @@ nnoremap("<leader>ff", require("telescope.builtin").find_files)
 nnoremap("<leader>fg", require("telescope.builtin").live_grep)
 nnoremap("<leader>cb", require("telescope.builtin").buffers)
 nnoremap("<leader>gw", require("telescope.builtin").grep_string)
-nnoremap("<leader>hh", ":Telescope help_tags<CR>")
+nnoremap("<leader>tj", ":Telescope help_tags<CR>")
 
 -- Tests
 nnoremap("<leader>t", "<Plug>PlenaryTestFile")

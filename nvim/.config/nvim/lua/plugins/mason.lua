@@ -80,7 +80,8 @@ return {
         handlers = handlers,
         settings = {
           Lua = {
-            runtime = { version = "LuaJIT" }, -- LuaJIT for Neovim
+            -- LuaJIT for Neovim
+            runtime = { version = "LuaJIT" },
             workspace = {
               checkThirdParty = false,
               library = {
