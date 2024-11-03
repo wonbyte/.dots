@@ -15,6 +15,7 @@ return {
           "jsonc",
           "lua",
           "markdown",
+          "rust",
           "scss",
           "sql",
           "toml",
