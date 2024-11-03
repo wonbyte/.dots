@@ -39,7 +39,7 @@ return {
           color_devicons = true,
 
           file_sorter = sorters.get_fuzzy_file,
-          file_ignore_patterns = { ".git/" },
+          file_ignore_patterns = { ".git/", "target/" },
           path_display = { "smart" },
 
           file_previewer = previewers.vim_buffer_cat.new,
