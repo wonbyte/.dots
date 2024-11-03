@@ -2,13 +2,12 @@
 set -Ux DOTFILES $HOME/.dots
 set -Ux LANG en_US.UTF-8
 set -Ux LC_ALL en_US.UTF-8
-set -Ux GOPATH $HOME/.go
 
 # Disable greeting
 set -U fish_greeting ""
 
 # Paths
-set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $GOPATH/bin /opt/homebrew/bin
+set -U fish_user_paths $HOME/.local/bin /opt/homebrew/bin
 
 # Aliases
 abbr clr clear
