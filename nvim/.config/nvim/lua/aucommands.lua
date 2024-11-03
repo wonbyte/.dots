@@ -74,3 +74,13 @@ autocmd("BufWritePost", {
     vim.diagnostic.setqflist({ open = false })
   end,
 })
+
+local rust_group = vim.api.nvim_create_augroup("RustComments", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = rust_group,
+  pattern = "rust",
+  desc = "Set colorcolumn to 100 for Rust files",
+  callback = function()
+    vim.wo.colorcolumn = "100"
+  end,
+})
