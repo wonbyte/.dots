@@ -81,6 +81,19 @@ return {
         },
       })
 
+      -- Rust Analyzer Configuration (rust_analyzer)
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities,
+        handlers = handlers,
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            },
+          },
+        },
+      })
+
       -- LspAttach AutoCommand for Buffer-Local Keybindings
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
