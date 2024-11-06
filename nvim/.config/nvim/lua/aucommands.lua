@@ -13,12 +13,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 local no_comment_group =
   vim.api.nvim_create_augroup("NoAutoComment", { clear = true })
-autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufEnter", {
   group = no_comment_group,
   pattern = "*",
   desc = "Disable automatic commenting on new lines",
-  command = [[setlocal formatoptions-=cro]],
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
 })
+
 
 local yank_group = augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
