@@ -7,7 +7,7 @@ set -Ux LC_ALL en_US.UTF-8
 set -U fish_greeting ""
 
 # Paths
-set -U fish_user_paths /opt/homebrew/bin $HOME/.local/bin $HOME/.cargo/bin
+set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin /opt/homebrew/bin
 
 # Aliases
 abbr clr clear

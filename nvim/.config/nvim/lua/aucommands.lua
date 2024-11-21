@@ -22,7 +22,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-
 local yank_group = augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
   group = yank_group,
