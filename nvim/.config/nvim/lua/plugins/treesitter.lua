@@ -9,6 +9,7 @@ return {
           "css",
           "dockerfile",
           "fish",
+          "go",
           "html",
           "javascript",
           "json",
