@@ -78,6 +78,19 @@ return {
       -- Set up capabilities (optional, required if using completion plugins)
       local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+      -- Go Language Server Configuration (gopls)
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+        handlers = handlers,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+          },
+        },
+      })
+
       -- Lua Language Server Configuration (lua_ls)
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
