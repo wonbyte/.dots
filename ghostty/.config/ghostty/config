@@ -3,11 +3,7 @@ theme = ayu
 background-opacity = 1.0
 
 # Font family
-font-family = Noto Sans Mono
-font-style = Regular
-font-style-italic = Regular Italic
-font-style-bold = Bold
-font-style-bold-italic = Bold Italic
+font-family = BlexMono Nerd Font Mono
 
 # Font size
 font-size = 14
