@@ -9,9 +9,5 @@ return {
       -- Enable treesitter integration for better pair handling
       check_ts = true,
     },
-    config = function(_, opts)
-      local npairs = require("nvim-autopairs")
-      npairs.setup(opts)
-    end,
   },
 }

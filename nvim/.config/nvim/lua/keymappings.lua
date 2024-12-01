@@ -1,9 +1,10 @@
--- Global helper
+-- Global helper for debugging
 P = function(v)
   print(vim.inspect(v))
   return v
 end
 
+-- Helper function for binding keymaps
 local function bind(op, outer_opts)
   outer_opts = outer_opts or { noremap = true, silent = true }
   return function(lhs, rhs, opts)
@@ -12,6 +13,7 @@ local function bind(op, outer_opts)
   end
 end
 
+-- Function to toggle the Quickfix window
 local function toggle_qf()
   -- Check if a Quickfix window is open
   local qf_open = vim.iter(vim.fn.getwininfo()):find(function(win)
@@ -27,31 +29,35 @@ local function toggle_qf()
   end
 end
 
+-- Keybinding helper functions
 local nnoremap = bind("n")
 local vnoremap = bind("v")
 local inoremap = bind("i")
 local cnoremap = bind("c")
 
--- General
+-- Clear search highlighting
 nnoremap("<C-h>", "<cmd>noh<CR>")
+-- Toggle display of hidden characters
 nnoremap("<leader>,", ":set invlist<CR>")
+-- Open file explorer
 nnoremap("<leader>o", ":Ex<CR>")
+-- Disable F1
 nnoremap("<F1>", "<Nop>")
 inoremap("<F1>", "<Nop>")
 
--- https://vim.fandom.com/wiki/Simplifying_regular_expressions_using_magic_and_no-magic
--- "very magic" (less escaping needed) regexes by default
+-- "Very magic" regexes by default
 nnoremap("?", "?\\v")
 nnoremap("/", "/\\v")
 cnoremap("%s/", "%sm/")
 
+-- Keep selection while indenting
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
 -- Quickfix
 nnoremap("<leader>q", toggle_qf)
 
--- Telescope
+-- Telescope Integrations
 nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
 nnoremap("<leader>gb", require("telescope.builtin").git_branches)
 nnoremap("<leader>gc", require("telescope.builtin").git_commits)
@@ -63,16 +69,16 @@ nnoremap("<leader>cb", require("telescope.builtin").buffers)
 nnoremap("<leader>gw", require("telescope.builtin").grep_string)
 nnoremap("<leader>tj", ":Telescope help_tags<CR>")
 
--- Tests
+-- Test Files
 nnoremap("<leader>t", "<Plug>PlenaryTestFile")
 
--- Inlay Hints On/Off
+-- Toggle Inlay Hints
 nnoremap("<leader>h", function()
   local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
   vim.lsp.inlay_hint.enable(not enabled)
   if enabled then
-    vim.notify("Hints disabled")
+    vim.notify("Inlay hints disabled", vim.log.levels.INFO)
   else
-    vim.notify("Hints enabled")
+    vim.notify("Inlay hints enabled", vim.log.levels.INFO)
   end
 end)

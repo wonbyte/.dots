@@ -16,111 +16,100 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    config = function()
-      local lspconfig = require("lspconfig")
-
+    opts = {
       -- Diagnostics Configuration
-      vim.diagnostic.config({
+      diagnostics = {
         float = {
           border = "rounded",
           source = "true",
         },
-        -- Disable inline virtual text
         virtual_text = false,
-        -- Enable diagnostic signs
         signs = false,
-        -- Show underlines for diagnostics
         underline = false,
-        -- Don't update diagnostics while typing
         update_in_insert = false,
-        -- Sort diagnostics by severity
         severity_sort = true,
-      })
-
+      },
       -- Float Window Borders
-      local border = {
-        { "🭽", "FloatBorder" },
-        { "▔", "FloatBorder" },
-        { "🭾", "FloatBorder" },
-        { "▕", "FloatBorder" },
-        { "🭿", "FloatBorder" },
-        { "▁", "FloatBorder" },
-        { "🭼", "FloatBorder" },
-        { "▏", "FloatBorder" },
-      }
-
-      local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(
-          vim.lsp.handlers.hover,
-          { border = border }
-        ),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = border }
-        ),
-      }
-
-      -- https://github.com/neovim/neovim/issues/30985 (ISSUE)
-      -- https://github.com/neovim/neovim/pull/30999 (FIX)
-      for _, method in ipairs({
-        "textDocument/diagnostic",
-        "workspace/diagnostic",
-      }) do
-        local default_diagnostic_handler = vim.lsp.handlers[method]
-        vim.lsp.handlers[method] = function(err, result, context, config)
-          if err ~= nil and err.code == -32802 then
-            return
-          end
-          return default_diagnostic_handler(err, result, context, config)
-        end
-      end
-
-      -- Set up capabilities (optional, required if using completion plugins)
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-      -- Go Language Server Configuration (gopls)
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-        settings = {
-          gopls = {
-            analyses = {
-              unusedparams = true,
+      border = {
+        { "╭", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "╮", "FloatBorder" },
+        { "│", "FloatBorder" },
+        { "╯", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "╰", "FloatBorder" },
+        { "│", "FloatBorder" },
+      },
+      servers = {
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = { unusedparams = true },
             },
           },
         },
-      })
-
-      -- Lua Language Server Configuration (lua_ls)
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-        settings = {
-          Lua = {
-            -- LuaJIT for Neovim
-            runtime = { version = "LuaJIT" },
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                vim.env.VIMRUNTIME,
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = { version = "LuaJIT" },
+              workspace = {
+                checkThirdParty = false,
+                library = { vim.env.VIMRUNTIME },
               },
             },
           },
         },
-      })
-
-      -- Rust Analyzer Configuration (rust_analyzer)
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
-        handlers = handlers,
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              allFeatures = true,
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
             },
           },
         },
-      })
+      },
+    },
+    config = function(_, opts)
+      local lspconfig = require("lspconfig")
+
+      -- Apply diagnostics configuration
+      vim.diagnostic.config(opts.diagnostics)
+
+      -- Set up float handlers
+      local handlers = {
+        ["textDocument/hover"] = vim.lsp.with(
+          vim.lsp.handlers.hover,
+          { border = opts.border }
+        ),
+        ["textDocument/signatureHelp"] = vim.lsp.with(
+          vim.lsp.handlers.signature_help,
+          { border = opts.border }
+        ),
+      }
+
+      -- Set up each server
+      for server, server_opts in pairs(opts.servers) do
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        lspconfig[server].setup(vim.tbl_deep_extend("force", {
+          capabilities = capabilities,
+          handlers = handlers,
+        }, server_opts))
+      end
+
+      -- Handle potential diagnostic-related issues
+      for _, method in ipairs({
+        "textDocument/diagnostic",
+        "workspace/diagnostic",
+      }) do
+        local default_handler = vim.lsp.handlers[method]
+        vim.lsp.handlers[method] = function(err, result, context, config)
+          if err ~= nil and err.code == -32802 then
+            return
+          end
+          return default_handler(err, result, context, config)
+        end
+      end
 
       -- LspAttach AutoCommand for Buffer-Local Keybindings
       vim.api.nvim_create_autocmd("LspAttach", {
