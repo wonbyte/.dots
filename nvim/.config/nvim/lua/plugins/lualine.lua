@@ -5,6 +5,7 @@ return {
     event = "VimEnter",
     opts = {
       options = {
+        theme = "gruvbox",
         icons_enabled = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
