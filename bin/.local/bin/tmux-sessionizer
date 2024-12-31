@@ -19,7 +19,7 @@ check_dependencies() {
 
 check_src_directory() {
     # Check if ~/src is a valid directory
-    if [[ ! -d ~/code ]]; then
+    if [[ ! -d ~/src ]]; then
         echo "Error: ~/src directory does not exist. Please create it or specify a directory manually." >&2
         exit 1
     fi
