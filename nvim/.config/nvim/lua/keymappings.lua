@@ -4,76 +4,89 @@ P = function(v)
   return v
 end
 
--- Helper function for binding keymaps
-local function bind(op, outer_opts)
-  outer_opts = outer_opts or { noremap = true, silent = true }
-  return function(lhs, rhs, opts)
-    opts = vim.tbl_extend("force", outer_opts, opts or {})
-    vim.keymap.set(op, lhs, rhs, opts)
+-- Helper to check if QF is open
+local function is_qf_open()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      return true
+    end
   end
+  return false
 end
 
--- Function to toggle the Quickfix window
+-- Toggle the Quickfix window (close if already open, open if closed)
 local function toggle_qf()
-  -- Check if a Quickfix window is open
-  local qf_open = vim.iter(vim.fn.getwininfo()):find(function(win)
-    return win.quickfix == 1
-  end) ~= nil
-
-  if qf_open then
+  if is_qf_open() then
     vim.cmd("cclose")
-  else
-    -- Populate the Quickfix list with diagnostics
-    vim.diagnostic.setqflist()
-    vim.cmd("copen")
+    return
   end
+
+  vim.schedule(function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local diagnostics = vim.diagnostic.get(bufnr)
+    if not vim.tbl_isempty(diagnostics) then
+      vim.diagnostic.setqflist()
+      vim.cmd("copen")
+    else
+      vim.notify("No diagnostics to show in Quickfix", vim.log.levels.INFO)
+    end
+  end)
 end
 
--- Keybinding helper functions
-local nnoremap = bind("n")
-local vnoremap = bind("v")
-local inoremap = bind("i")
-local cnoremap = bind("c")
+-- Auto-refresh QF on saving *if* the QF window is already open
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*",
+  callback = function()
+    -- Only update if QF is already open
+    if is_qf_open() then
+      vim.schedule(function()
+        -- Update existing QF diagnostics without opening it if closed
+        vim.diagnostic.setqflist({ open = false })
+
+        -- Auto-close when empty
+        if vim.tbl_isempty(vim.diagnostic.get()) then
+          vim.cmd("cclose")
+        end
+      end)
+    end
+  end,
+})
+
+local keymap = vim.keymap.set
 
 -- Clear search highlighting
-nnoremap("<C-h>", "<cmd>noh<CR>")
+keymap("n", "<C-h>", "<cmd>noh<CR>")
 -- Toggle display of hidden characters
-nnoremap("<leader>,", ":set invlist<CR>")
+
+keymap("n", "<leader>,", ":set invlist<CR>")
+
 -- Open file explorer
-nnoremap("<leader>o", ":Ex<CR>")
+keymap("n", "<leader>o", ":Ex<CR>")
+
 -- Disable F1
-nnoremap("<F1>", "<Nop>")
-inoremap("<F1>", "<Nop>")
+keymap("n", "<F1>", "<Nop>")
+keymap("i", "<F1>", "<Nop>")
 
 -- "Very magic" regexes by default
-nnoremap("?", "?\\v")
-nnoremap("/", "/\\v")
-cnoremap("%s/", "%sm/")
+keymap("n", "?", "?\\v")
+keymap("n", "/", "/\\v")
+keymap("c", "%s/", "%sm/")
 
 -- Keep selection while indenting
-vnoremap("<", "<gv")
-vnoremap(">", ">gv")
+keymap("v", "<", "<gv")
+keymap("v", ">", ">gv")
 
 -- Quickfix
-nnoremap("<leader>q", toggle_qf)
+keymap("n", "<leader>q", toggle_qf)
 
--- Telescope Integrations
-nnoremap("<leader>rc", require("util.builtins").search_dotfiles)
-nnoremap("<leader>gb", require("telescope.builtin").git_branches)
-nnoremap("<leader>gc", require("telescope.builtin").git_commits)
-nnoremap("<leader>gs", require("telescope.builtin").git_status)
-nnoremap("<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-nnoremap("<leader>ff", require("telescope.builtin").find_files)
-nnoremap("<leader>fg", require("telescope.builtin").live_grep)
-nnoremap("<leader>cb", require("telescope.builtin").buffers)
-nnoremap("<leader>gw", require("telescope.builtin").grep_string)
-nnoremap("<leader>tj", ":Telescope help_tags<CR>")
+-- Source File
+keymap("n", "<leader>s", ":source <CR>")
 
 -- Test Files
-nnoremap("<leader>t", "<Plug>PlenaryTestFile")
+keymap("n", "<leader>t", "<Plug>PlenaryTestFile")
 
 -- Toggle Inlay Hints
-nnoremap("<leader>h", function()
+keymap("n", "<leader>h", function()
   local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
   vim.lsp.inlay_hint.enable(not enabled)
   if enabled then
