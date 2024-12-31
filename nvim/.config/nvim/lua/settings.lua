@@ -1,33 +1,45 @@
--- reuse the same window when browsing
+-- Reuse the same window when browsing
 vim.g.netrw_browse_split = 0
--- suppress the banner
-vim.g.netrw_banner = 0
+vim.g.netrw_banner = 0 -- Suppress the banner
 
 -- Better completion
--- menuone: popup even when there's only one match
--- noinsert: Do not insert text until a selection is made
--- noselect: Do not select, force user to select one from the menu
--- Completion settings
 vim.o.completeopt = "menuone,noinsert,noselect"
 
--- Line numbers
+-- RGB color
+vim.o.termguicolors = true
+
+-- Improve performance during macros or scripts
+vim.o.lazyredraw = true
+
+-- Adjust for light/dark themes
+vim.o.background = "dark"
+
+-- Faster UI updates
+vim.o.updatetime = 300
+
+-- Relative line numbers
 vim.o.relativenumber = true
+-- Absolute line number for the current line
 vim.o.number = true
 
--- Scrolling context and command line height
+-- Minimum lines of context around the cursor
 vim.o.scrolloff = 2
+-- Height of the command line
 vim.o.cmdheight = 1
 
--- Disable swap, backup, and undo files
+-- Disable swap file
 vim.o.swapfile = false
+-- Disable backup file
 vim.o.backup = false
+-- Disable persistent undo
 vim.o.undofile = false
 
--- Search settings
+-- Ignore case when searching
 vim.o.ignorecase = true
+-- Override ignorecase if uppercase letters are used in the search
 vim.o.smartcase = true
 
--- Diff settings
+-- Ignore whitespace in diffs
 vim.o.diffopt = vim.o.diffopt .. ",iwhite"
 
 -- Always show the sign column to prevent layout shifts
@@ -39,13 +51,24 @@ vim.o.colorcolumn = "80"
 -- Use system clipboard for all operations
 vim.o.clipboard = "unnamedplus"
 
--- Tab and indentation settings
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.shiftround = true
+-- Ubuntu-specific clipboard handling fallback (if unnamedplus fails)
+if vim.fn.has("clipboard") == 0 then
+  vim.o.clipboard = ""
+end
 
--- Display hidden characters
-vim.o.listchars = [[tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•]]
+-- Tab and indentation settings
+vim.o.tabstop = 4 -- Tab width
+vim.o.softtabstop = 4 -- Number of spaces for a <Tab>
+vim.o.shiftwidth = 4 -- Indent width
+vim.o.expandtab = true -- Convert tabs to spaces
+vim.o.smartindent = true -- Smart indentation
+vim.o.shiftround = true -- Round indent to the nearest shiftwidth
+
+-- Enable the display of hidden characters
+vim.o.list = true
+vim.o.listchars = "tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•"
+
+-- Ensure files are saved with UTF-8 encoding
+vim.o.fileencoding = "utf-8"
+-- Handle different line endings (Unix and Windows)
+vim.o.fileformats = "unix,dos,mac"
