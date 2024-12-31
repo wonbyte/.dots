@@ -1,7 +1,7 @@
--- Remove trailing whitespace on save
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Remove trailing whitespace on save
 local remove_whitespace_group = augroup("RemoveWhitespace", { clear = true })
 autocmd("BufWritePre", {
   group = remove_whitespace_group,
@@ -32,16 +32,5 @@ autocmd("TextYankPost", {
       timeout = 100,
       on_visual = true,
     })
-  end,
-})
-
--- Update Quickfix list on file save
-local qf_group = augroup("QuickfixUpdate", { clear = true })
-autocmd("BufWritePost", {
-  group = qf_group,
-  pattern = "*",
-  desc = "Update Quickfix list on save",
-  callback = function()
-    vim.diagnostic.setqflist({ open = false })
   end,
 })
