@@ -123,6 +123,7 @@ return {
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
+      local builtin = require("telescope.builtin")
 
       -- Apply diagnostics configuration
       vim.diagnostic.config(opts.diagnostics)
@@ -155,7 +156,6 @@ return {
         callback = function(args)
           -- Buffer-Local Mappings
           local bufnr = { buffer = args.buf }
-          local builtin = require("telescope.builtin")
 
           vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufnr)
