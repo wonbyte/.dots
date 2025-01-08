@@ -1,27 +1,14 @@
-# Ghostty theme
-theme = GruvboxDark
 background-opacity = 1.0
-
-# Font family
-font-family = BlexMono Nerd Font Mono
-
-# Font size
-font-size = 14
-
-# Cursor style
-cursor-style-blink = true
-
-# Clipboard settings
 clipboard-read = allow
 clipboard-write = allow
-
-# Enable shell integration auto-injection
-shell-integration = fish
-
-# Quit after the last window is closed.
-quit-after-last-window-closed = true
-
-# https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig#L686
-window-padding-balance = true
-
+clipboard-trim-trailing-spaces = true
+cursor-style-blink = true
+font-family = BlexMono Nerd Font Mono
+font-style-bold = false
+font-style-bold-italic = false
+font-synthetic-style = false
+font-size = 14
 macos-titlebar-proxy-icon = hidden
+theme = GruvboxDark
+quit-after-last-window-closed = true
+window-padding-balance = true
