@@ -62,7 +62,7 @@ return {
           source = true,
         },
         virtual_text = false,
-        signs = false,
+        signs = true,
         underline = false,
         update_in_insert = false,
         severity_sort = true,
