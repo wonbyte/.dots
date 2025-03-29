@@ -4,9 +4,7 @@ return {
     dependencies = {
       {
         "williamboman/mason.nvim",
-        dependencies = {
-          "williamboman/mason-lspconfig.nvim",
-        },
+        dependencies = { "williamboman/mason-lspconfig.nvim" },
         opts = {
           ui = {
             icons = {
@@ -19,11 +17,9 @@ return {
       },
       {
         "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
+        ft = "lua",
         opts = {
           library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           },
         },
@@ -31,7 +27,7 @@ return {
       {
         "saghen/blink.cmp",
         dependencies = "rafamadriz/friendly-snippets",
-        version = "v0.*",
+        version = "*",
         opts = {
           keymap = { preset = "default" },
           appearance = {
@@ -39,45 +35,35 @@ return {
             nerd_font_variant = "mono",
           },
           sources = {
-            -- add lazydev to your completion providers
             default = { "lazydev", "lsp", "path", "snippets", "buffer" },
             providers = {
               lazydev = {
                 name = "LazyDev",
                 module = "lazydev.integrations.blink",
-                -- make lazydev completions top priority (see `:h blink.cmp`)
-                score_offset = 100,
+                score_offset = 100, -- Prioritize LazyDev completions
               },
             },
           },
-          signature = { enabled = true },
+          completion = {
+            menu = { border = "single" },
+            documentation = { window = { border = "single" } },
+          },
+          fuzzy = { implementation = "prefer_rust_with_warning" },
+          signature = { window = { border = "single" } },
         },
+        opts_extend = { "sources.default" },
       },
     },
     opts = {
-      -- Diagnostics Configuration
       diagnostics = {
-        float = {
-          border = "rounded",
-          source = true,
-        },
+        float = { border = "rounded", source = true },
         virtual_text = false,
         signs = true,
         underline = false,
         update_in_insert = false,
         severity_sort = true,
       },
-      -- Float Window Borders
-      border = {
-        { "╭", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╮", "FloatBorder" },
-        { "│", "FloatBorder" },
-        { "╯", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╰", "FloatBorder" },
-        { "│", "FloatBorder" },
-      },
+      border = "rounded",
       servers = {
         gopls = {
           settings = {
@@ -105,69 +91,65 @@ return {
             },
           },
         },
+        ols = { settings = {} },
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
-              cargo = {
-                allFeatures = true,
-              },
-              completion = {
-                capable = {
-                  snippets = "add_parenthesis",
-                },
-              },
+              cargo = { allFeatures = true },
+              completion = { capable = { snippets = "add_parenthesis" } },
             },
           },
         },
+        zls = { settings = { semantic_tokens = "partial" } },
       },
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
-      local builtin = require("telescope.builtin")
+      local cmp_lsp = require("blink.cmp").get_lsp_capabilities
 
       -- Apply diagnostics configuration
       vim.diagnostic.config(opts.diagnostics)
 
-      -- Set up float handlers
-      local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(
-          vim.lsp.handlers.hover,
-          { border = opts.border }
-        ),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = opts.border }
-        ),
-      }
-
-      -- Set up each server
-      for server, server_opts in pairs(opts.servers) do
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-        lspconfig[server].setup(vim.tbl_deep_extend("force", {
-          capabilities = capabilities,
-          handlers = handlers,
-        }, server_opts))
+      -- Override default floating preview
+      local orig = vim.lsp.util.open_floating_preview
+      ---@diagnostic disable-next-line
+      vim.lsp.util.open_floating_preview = function(contents, syntax, o, ...)
+        o = o or {}
+        o.border = opts.border
+        return orig(contents, syntax, o, ...)
       end
 
-      -- LspAttach AutoCommand for Buffer-Local Keybindings
+      -- Set up LSP servers
+      for server, server_config in pairs(opts.servers) do
+        lspconfig[server].setup(vim.tbl_deep_extend("force", server_config, {
+          capabilities = cmp_lsp(server_config.capabilities),
+        }))
+      end
+
+      -- Set LSP keymaps
+      local function on_lsp_attach(args)
+        local bufnr = args.buf
+        local keymaps = {
+          { "n", "gd", vim.lsp.buf.definition, "[LSP] Go to definition" },
+          { "n", "<C-k>", vim.lsp.buf.signature_help, "[LSP] Signature help" },
+          { "n", "<leader>rn", vim.lsp.buf.rename, "[LSP] Rename symbol" },
+          {
+            { "n", "v" },
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            "[LSP] Code actions",
+          },
+        }
+
+        vim.tbl_map(function(km)
+          vim.keymap.set(km[1], km[2], km[3], { buffer = bufnr, desc = km[4] })
+        end, keymaps)
+      end
+
+      -- AutoCommand: Buffer-local keybindings on LspAttach
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
-        callback = function(args)
-          -- Buffer-Local Mappings
-          local bufnr = { buffer = args.buf }
-
-          vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufnr)
-          vim.keymap.set("n", "gr", builtin.lsp_references, bufnr)
-          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufnr)
-          vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, bufnr)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, bufnr)
-          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufnr)
-          vim.keymap.set("n", "rn", vim.lsp.buf.rename, bufnr)
-          vim.keymap.set({ "n", "v" }, "ca", vim.lsp.buf.code_action, bufnr)
-          vim.keymap.set("n", "<leader>wd", builtin.lsp_document_symbols, bufnr)
-        end,
+        callback = on_lsp_attach,
       })
     end,
   },

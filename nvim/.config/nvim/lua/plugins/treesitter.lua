@@ -1,5 +1,4 @@
 return {
-  -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -7,15 +6,17 @@ return {
       ensure_installed = {
         "bash",
         "c",
+        "cpp",
         "css",
         "dockerfile",
         "fish",
-        "go",
         "html",
+        "go",
         "javascript",
         "json",
         "lua",
         "markdown",
+        "odin",
         "rust",
         "scss",
         "sql",
@@ -23,6 +24,7 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "zig",
       },
       highlight = {
         enable = true,
