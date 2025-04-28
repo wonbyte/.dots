@@ -8,3 +8,6 @@ nvm.fish
 # nvim
 packer_compiled.lua
 .nvimlog
+
+# odin (binary)
+odin
