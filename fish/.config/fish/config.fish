@@ -11,7 +11,7 @@ set -gx CPPFLAGS "-I/opt/homebrew/opt/llvm/include"
 set -U fish_greeting ""
 
 # Paths
-set -U fish_user_paths /opt/homebrew/opt/llvm/bin/ $HOME/.local/bin /opt/homebrew/bin $HOME/.cargo/bin $GOPATH/bin
+set -U fish_user_paths /opt/homebrew/opt/llvm/bin $HOME/.local/bin /opt/homebrew/bin $HOME/.cargo/bin $GOPATH/bin
 
 # Aliases
 abbr clr clear
