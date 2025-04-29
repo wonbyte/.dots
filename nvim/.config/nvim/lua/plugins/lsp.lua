@@ -65,6 +65,7 @@ return {
       },
       border = "rounded",
       servers = {
+        clangd = {},
         gopls = {
           settings = {
             gopls = {
