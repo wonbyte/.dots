@@ -57,8 +57,8 @@ return {
     opts = {
       diagnostics = {
         float = { border = "rounded", source = true },
-        virtual_text = false,
-        signs = true,
+        virtual_text = true,
+        signs = false,
         underline = false,
         update_in_insert = false,
         severity_sort = true,
