@@ -9,6 +9,6 @@ font-style-bold-italic = false
 font-synthetic-style = false
 font-size = 14
 macos-titlebar-proxy-icon = hidden
-theme = GruvboxDark
+theme = Gruvbox Dark
 quit-after-last-window-closed = true
 window-padding-balance = true
