@@ -45,16 +45,11 @@ vim.o.diffopt = vim.o.diffopt .. ",iwhite"
 -- Always show the sign column to prevent layout shifts
 vim.o.signcolumn = "yes"
 
--- Column guide at 80 characters
-vim.o.colorcolumn = "80"
+-- Column guide at 120 characters
+vim.o.colorcolumn = "120"
 
--- Use system clipboard for all operations
-vim.o.clipboard = "unnamedplus"
-
--- Ubuntu-specific clipboard handling fallback (if unnamedplus fails)
-if vim.fn.has("clipboard") == 0 then
-  vim.o.clipboard = ""
-end
+-- macOS clipboard handling (use pbcopy/pbpaste)
+vim.o.clipboard = "unnamed"
 
 -- Tab and indentation settings
 vim.o.tabstop = 4 -- Tab width

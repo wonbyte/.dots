@@ -1,75 +1,88 @@
 return {
   {
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    config = function(_, opts)
+      require("mason").setup(opts)
+    end,
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    dependencies = "rafamadriz/friendly-snippets",
+    version = "*",
+    opts = {
+      keymap = { preset = "default" },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = "mono",
+      },
+      sources = {
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100, -- Prioritize LazyDev completions
+          },
+        },
+      },
+      completion = {
+        menu = { border = "single" },
+        documentation = { window = { border = "single" } },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+      signature = { window = { border = "single" } },
+    },
+    opts_extend = { "sources.default" },
+  },
+  {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      {
-        "williamboman/mason.nvim",
-        dependencies = { "williamboman/mason-lspconfig.nvim" },
-        opts = {
-          ui = {
-            icons = {
-              package_installed = "✓",
-              package_pending = "➜",
-              package_uninstalled = "✗",
-            },
-          },
-        },
-      },
-      {
-        "folke/lazydev.nvim",
-        ft = "lua",
-        opts = {
-          library = {
-            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-          },
-        },
-      },
-      {
-        "saghen/blink.cmp",
-        dependencies = "rafamadriz/friendly-snippets",
-        version = "*",
-        opts = {
-          keymap = { preset = "default" },
-          appearance = {
-            use_nvim_cmp_as_default = true,
-            nerd_font_variant = "mono",
-          },
-          sources = {
-            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-            providers = {
-              lazydev = {
-                name = "LazyDev",
-                module = "lazydev.integrations.blink",
-                score_offset = 100, -- Prioritize LazyDev completions
+    dependencies = { "mason-org/mason.nvim", "saghen/blink.cmp" },
+    config = function()
+      local cmp_lsp = require("blink.cmp").get_lsp_capabilities
+
+      -- LSP server configurations
+      local servers = {
+        clangd = {
+          cmd = { "clangd" },
+          filetypes = { "c", "cpp", "objc", "objcpp" },
+          settings = {
+            clangd = {
+              offsetEncoding = { "utf-8", "utf-16" },
+              textDocument = {
+                completion = {
+                  editsNearCursor = true,
+                },
               },
             },
           },
-          completion = {
-            menu = { border = "single" },
-            documentation = { window = { border = "single" } },
-          },
-          fuzzy = { implementation = "prefer_rust_with_warning" },
-          signature = { window = { border = "single" } },
         },
-        opts_extend = { "sources.default" },
-      },
-    },
-    opts = {
-      diagnostics = {
-        float = { border = "rounded", source = true },
-        virtual_text = true,
-        signs = false,
-        underline = false,
-        update_in_insert = false,
-        severity_sort = true,
-      },
-      border = "rounded",
-      servers = {
-        clangd = {},
         gopls = {
+          cmd = { "gopls" },
+          filetypes = { "go", "gomod" },
+          root_dir = require("lspconfig").util.root_pattern("go.work", "go.mod", ".git"),
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = { dynamicRegistration = true },
+            },
+          },
           settings = {
             gopls = {
-              analyses = { unusedparams = true },
+              usePlaceholders = true,
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+                nilness = true,
+              },
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -83,6 +96,8 @@ return {
           },
         },
         lua_ls = {
+          cmd = { "lua-language-server" },
+          filetypes = { "lua" },
           settings = {
             Lua = {
               completion = {
@@ -92,8 +107,9 @@ return {
             },
           },
         },
-        ols = { settings = {} },
         rust_analyzer = {
+          cmd = { "rust-analyzer" },
+          filetypes = { "rust" },
           settings = {
             ["rust-analyzer"] = {
               cargo = { allFeatures = true },
@@ -101,33 +117,28 @@ return {
             },
           },
         },
-        zls = { settings = { semantic_tokens = "partial" } },
-      },
-    },
-    config = function(_, opts)
-      local lspconfig = require("lspconfig")
-      local cmp_lsp = require("blink.cmp").get_lsp_capabilities
+      }
 
-      -- Apply diagnostics configuration
-      vim.diagnostic.config(opts.diagnostics)
+      -- Diagnostics configuration
+      vim.diagnostic.config({
+        float = { border = "rounded", source = true },
+        virtual_text = false,
+        signs = true,
+        underline = false,
+        update_in_insert = false,
+        severity_sort = true,
+      })
 
       -- Override default floating preview
       local orig = vim.lsp.util.open_floating_preview
       ---@diagnostic disable-next-line
       vim.lsp.util.open_floating_preview = function(contents, syntax, o, ...)
         o = o or {}
-        o.border = opts.border
+        o.border = "rounded"
         return orig(contents, syntax, o, ...)
       end
 
-      -- Set up LSP servers
-      for server, server_config in pairs(opts.servers) do
-        lspconfig[server].setup(vim.tbl_deep_extend("force", server_config, {
-          capabilities = cmp_lsp(server_config.capabilities),
-        }))
-      end
-
-      -- Set LSP keymaps
+      -- Set LSP keymaps function
       local function on_lsp_attach(args)
         local bufnr = args.buf
         local keymaps = {
@@ -147,11 +158,24 @@ return {
         end, keymaps)
       end
 
-      -- AutoCommand: Buffer-local keybindings on LspAttach
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
         callback = on_lsp_attach,
       })
+
+      -- Set up LSP servers
+      for server_name, server_config in pairs(servers) do
+        -- Configure the LSP server
+        vim.lsp.config(
+          server_name,
+          vim.tbl_deep_extend("force", server_config, {
+            capabilities = cmp_lsp(server_config.capabilities),
+          })
+        )
+
+        -- Enable the LSP server
+        vim.lsp.enable(server_name)
+      end
     end,
   },
 }
