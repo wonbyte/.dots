@@ -16,7 +16,6 @@ return {
         "json",
         "lua",
         "markdown",
-        "odin",
         "proto",
         "rust",
         "scss",
@@ -25,7 +24,6 @@ return {
         "vim",
         "vimdoc",
         "yaml",
-        "zig",
       },
       highlight = {
         enable = true,
