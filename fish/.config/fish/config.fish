@@ -19,12 +19,5 @@ abbr v nvim
 abbr vi nvim
 abbr vim nvim
 
-# Functions
-function bbic
-    brew update
-    and brew bundle install --cleanup --file=~/.dots/brew/Brewfile --no-lock
-    and brew upgrade
-end
-
 # Prompt
 starship init fish | source
