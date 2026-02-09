@@ -1,36 +1,50 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+---@param group_name string The name of the autocommand group
+---@param events table[] A list of event configurations
+local function create_autocmd_group(group_name, events)
+  local group = augroup(group_name, { clear = true })
+
+  for _, event_config in ipairs(events) do
+    event_config.group = group
+    autocmd(event_config.event, event_config)
+  end
+end
+
 -- Remove trailing whitespace on save
-local remove_whitespace_group = augroup("RemoveWhitespace", { clear = true })
-autocmd("BufWritePre", {
-  group = remove_whitespace_group,
-  pattern = "*",
-  desc = "Remove trailing whitespace before saving the file",
-  command = [[:%s/\s\+$//e]],
+create_autocmd_group("RemoveWhitespace", {
+  {
+    event = "BufWritePre",
+    pattern = "*",
+    desc = "Remove trailing whitespace before saving the file",
+    command = [[:%s/\s\+$//e]],
+  },
 })
 
 -- Disable automatic commenting on new lines
-local no_comment_group = augroup("NoAutoComment", { clear = true })
-autocmd("BufEnter", {
-  group = no_comment_group,
-  pattern = "*",
-  desc = "Disable automatic commenting on new lines",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-  end,
+create_autocmd_group("NoAutoComment", {
+  {
+    event = "BufEnter",
+    pattern = "*",
+    desc = "Disable automatic commenting on new lines",
+    callback = function()
+      vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+    end,
+  },
 })
 
 -- Highlight yanked text briefly
-local yank_group = augroup("YankHighlight", { clear = true })
-autocmd("TextYankPost", {
-  group = yank_group,
-  desc = "Highlight yanked text briefly",
-  callback = function()
-    vim.hl.on_yank({
-      higroup = "IncSearch",
-      timeout = 100,
-      on_visual = true,
-    })
-  end,
+create_autocmd_group("YankHighlight", {
+  {
+    event = "TextYankPost",
+    desc = "Highlight yanked text briefly",
+    callback = function()
+      vim.hl.on_yank({
+        higroup = "IncSearch",
+        timeout = 100,
+        on_visual = true,
+      })
+    end,
+  },
 })

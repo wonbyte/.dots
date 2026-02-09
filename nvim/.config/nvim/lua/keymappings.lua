@@ -1,4 +1,5 @@
--- Global helper for debugging
+---@param v any Value to inspect and print
+---@return any The same value for chaining
 P = function(v)
   print(vim.inspect(v))
   return v
@@ -6,27 +7,43 @@ end
 
 local keymap = vim.keymap.set
 
+-- ============================================================================
+-- SEARCH & NAVIGATION
+-- ============================================================================
+
 -- Clear search highlighting
 keymap("n", "<C-h>", "<cmd>noh<CR>")
--- Toggle display of hidden characters
 
+-- Toggle display of hidden characters
 keymap("n", "<leader>,", ":set invlist<CR>")
 
 -- Open file explorer
 keymap("n", "<leader>o", ":Ex<CR>")
-
--- Disable F1
-keymap("n", "<F1>", "<Nop>")
-keymap("i", "<F1>", "<Nop>")
 
 -- "Very magic" regexes by default
 keymap("n", "?", "?\\v")
 keymap("n", "/", "/\\v")
 keymap("c", "%s/", "%sm/")
 
+-- ============================================================================
+-- EDITING
+-- ============================================================================
+
 -- Keep selection while indenting
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
+
+-- ============================================================================
+-- SPECIAL KEYS
+-- ============================================================================
+
+-- Disable F1
+keymap("n", "<F1>", "<Nop>")
+keymap("i", "<F1>", "<Nop>")
+
+-- ============================================================================
+-- DEVELOPER TOOLS
+-- ============================================================================
 
 -- Source File
 keymap("n", "<leader>s", ":source <CR>")
