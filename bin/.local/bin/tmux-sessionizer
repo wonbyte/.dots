@@ -17,10 +17,10 @@ check_dependencies() {
     fi
 }
 
-check_src_directory() {
-    # Check if ~/src is a valid directory
-    if [[ ! -d ~/src ]]; then
-        echo "Error: ~/src directory does not exist. Please create it or specify a directory manually." >&2
+check_code_directory() {
+    # Check if ~/code is a valid directory
+    if [[ ! -d ~/code ]]; then
+        echo "Error: ~/code directory does not exist. Please create it or specify a directory manually." >&2
         exit 1
     fi
 }
@@ -31,7 +31,7 @@ select_directory() {
         echo "$1"
     # Otherwise, use `fzf` for interactive selection if available
     elif command -v fzf >/dev/null; then
-        find ~/src -mindepth 1 -maxdepth 1 -type d -print | fzf || true
+        find ~/code -mindepth 1 -maxdepth 1 -type d -print | fzf || true
     else
         # If no argument is given and `fzf` is unavailable, exit with an error
         echo "Error: No directory provided and fzf is not available for interactive selection." >&2
@@ -54,8 +54,8 @@ main() {
     # Check that necessary commands are installed
     check_dependencies
 
-    # Ensure the `~/src` directory exists
-    check_src_directory
+    # Ensure the `~/code` directory exists
+    check_code_directory
 
     # Get the selected directory (either from argument or `fzf`)
     local selected

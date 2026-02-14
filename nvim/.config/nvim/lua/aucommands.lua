@@ -7,8 +7,10 @@ local function create_autocmd_group(group_name, events)
   local group = augroup(group_name, { clear = true })
 
   for _, event_config in ipairs(events) do
+    local event = event_config.event
+    event_config.event = nil  -- Remove the event key
     event_config.group = group
-    autocmd(event_config.event, event_config)
+    autocmd(event, event_config)
   end
 end
 
