@@ -112,8 +112,115 @@ return {
           filetypes = { "rust" },
           settings = {
             ["rust-analyzer"] = {
-              cargo = { allFeatures = true },
-              completion = { capable = { snippets = "add_parenthesis" } },
+              -- Enable all Cargo features
+              cargo = {
+                allFeatures = true,
+                buildScripts = {
+                  enable = true,
+                },
+              },
+
+              -- Use Clippy for better linting
+              check = {
+                command = "clippy",
+                allFeatures = true,
+                extraArgs = {
+                  "--",
+                  "-W",
+                  "clippy::pedantic",
+                  "-W",
+                  "clippy::nursery",
+                  "-A",
+                  "clippy::module_name_repetitions",
+                  "-A",
+                  "clippy::missing_errors_doc",
+                  "-A",
+                  "clippy::missing_panics_doc",
+                },
+              },
+
+              -- Enable proc macros (critical for derive macros)
+              procMacro = {
+                enable = true,
+                attributes = {
+                  enable = true,
+                },
+              },
+
+              -- Comprehensive inlay hints
+              inlayHints = {
+                bindingModeHints = {
+                  enable = true,
+                },
+                chainingHints = {
+                  enable = true,
+                },
+                closureCaptureHints = {
+                  enable = true,
+                },
+                closureReturnTypeHints = {
+                  enable = "with_block",
+                },
+                discriminantHints = {
+                  enable = "fieldless",
+                },
+                lifetimeElisionHints = {
+                  enable = "skip_trivial",
+                  useParameterNames = true,
+                },
+                parameterHints = {
+                  enable = true,
+                },
+                reborrowHints = {
+                  enable = "mutable",
+                },
+                typeHints = {
+                  enable = true,
+                  hideClosureInitialization = false,
+                  hideNamedConstructor = false,
+                },
+              },
+
+              -- Better completion
+              completion = {
+                autoimport = {
+                  enable = true,
+                },
+                callable = {
+                  snippets = "add_parentheses", -- Fixed: plural "add_parentheses"
+                },
+                postfix = {
+                  enable = true,
+                },
+              },
+
+              -- Better imports
+              imports = {
+                granularity = {
+                  group = "module",
+                },
+                prefix = "self",
+              },
+
+              -- Hover actions
+              hover = {
+                actions = {
+                  references = {
+                    enable = true,
+                  },
+                },
+              },
+
+              -- Code lens
+              lens = {
+                enable = true,
+                run = {
+                  enable = true,
+                },
+                debug = {
+                  enable = true,
+                },
+              },
             },
           },
         },
