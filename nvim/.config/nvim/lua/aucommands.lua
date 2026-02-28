@@ -8,9 +8,9 @@ local function create_autocmd_group(group_name, events)
 
   for _, event_config in ipairs(events) do
     local event = event_config.event
-    event_config.event = nil  -- Remove the event key
-    event_config.group = group
-    autocmd(event, event_config)
+    local opts = vim.tbl_extend("force", event_config, { group = group })
+    opts.event = nil
+    autocmd(event, opts)
   end
 end
 

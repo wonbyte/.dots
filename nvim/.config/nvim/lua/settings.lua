@@ -8,9 +8,6 @@ vim.o.completeopt = "menuone,noinsert,noselect"
 -- RGB color
 vim.o.termguicolors = true
 
--- Improve performance during macros or scripts
-vim.o.lazyredraw = true
-
 -- Adjust for light/dark themes
 vim.o.background = "dark"
 
@@ -23,7 +20,8 @@ vim.o.relativenumber = true
 vim.o.number = true
 
 -- Minimum lines of context around the cursor
-vim.o.scrolloff = 2
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
 -- Height of the command line
 vim.o.cmdheight = 1
 
@@ -49,7 +47,24 @@ vim.o.signcolumn = "yes"
 vim.o.colorcolumn = "120"
 
 -- macOS clipboard handling (use pbcopy/pbpaste)
-vim.o.clipboard = "unnamed"
+vim.o.clipboard = "unnamedplus"
+
+-- OSC 52 clipboard provider for Ghostty/Kitty terminals
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+  },
+}
+
+-- Open splits to the right and below
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Tab and indentation settings
 vim.o.tabstop = 4 -- Tab width
