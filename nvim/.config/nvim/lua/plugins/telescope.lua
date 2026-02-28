@@ -1,8 +1,20 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ff", desc = "Find files" },
+      { "<leader>fg", desc = "Live grep" },
+      { "<leader>fb", desc = "Buffer fuzzy find" },
+      { "<leader>cb", desc = "Buffers" },
+      { "<leader>rc", desc = "Dotfiles" },
+      { "<leader>gb", desc = "Git branches" },
+      { "<leader>gc", desc = "Git commits" },
+      { "<leader>gs", desc = "Git status" },
+      { "<leader>gw", desc = "Grep string" },
+      { "<leader>tj", desc = "Help tags" },
+    },
     dependencies = {
-      { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },

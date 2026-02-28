@@ -17,38 +17,35 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = "rafamadriz/friendly-snippets",
+    dependencies = { "rafamadriz/friendly-snippets", "mason-org/mason.nvim" },
     version = "*",
-    opts = {
-      keymap = { preset = "default" },
-      appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "mono",
-      },
-      sources = {
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100, -- Prioritize LazyDev completions
+    config = function()
+      local blink = require("blink.cmp")
+      blink.setup({
+        keymap = { preset = "default" },
+        appearance = {
+          use_nvim_cmp_as_default = true,
+          nerd_font_variant = "mono",
+        },
+        sources = {
+          default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+          providers = {
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              score_offset = 100, -- Prioritize LazyDev completions
+            },
           },
         },
-      },
-      completion = {
-        menu = { border = "single" },
-        documentation = { window = { border = "single" } },
-      },
-      fuzzy = { implementation = "prefer_rust_with_warning" },
-      signature = { window = { border = "single" } },
-    },
-    opts_extend = { "sources.default" },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "mason-org/mason.nvim", "saghen/blink.cmp" },
-    config = function()
-      local cmp_lsp = require("blink.cmp").get_lsp_capabilities
+        completion = {
+          menu = { border = "single" },
+          documentation = { window = { border = "single" } },
+        },
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        signature = { window = { border = "single" } },
+      })
+
+      local cmp_lsp = blink.get_lsp_capabilities
 
       -- LSP server configurations
       local servers = {
@@ -69,7 +66,10 @@ return {
         gopls = {
           cmd = { "gopls" },
           filetypes = { "go", "gomod" },
-          root_dir = require("lspconfig").util.root_pattern("go.work", "go.mod", ".git"),
+          root_dir = function(bufnr, cb)
+            local root = vim.fs.root(bufnr, { "go.work", "go.mod", ".git" })
+            if root then cb(root) end
+          end,
           capabilities = {
             workspace = {
               didChangeWatchedFiles = { dynamicRegistration = true },

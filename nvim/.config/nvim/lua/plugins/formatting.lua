@@ -21,6 +21,13 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       rust = { "rustfmt" },
+      go = { "goimports", "gofmt" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
+      javascript = { "prettier" },
+      html = { "prettier" },
+      css = { "prettier" },
+      json = { "prettier" },
     },
     -- Set default options
     default_format_opts = {

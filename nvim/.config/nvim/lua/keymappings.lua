@@ -1,9 +1,4 @@
----@param v any Value to inspect and print
----@return any The same value for chaining
-P = function(v)
-  print(vim.inspect(v))
-  return v
-end
+_G.P = vim.print
 
 local keymap = vim.keymap.set
 
@@ -12,44 +7,44 @@ local keymap = vim.keymap.set
 -- ============================================================================
 
 -- Clear search highlighting
-keymap("n", "<C-h>", "<cmd>noh<CR>")
+keymap("n", "<C-h>", "<cmd>noh<CR>", { desc = "Clear search highlight" })
 
 -- Toggle display of hidden characters
-keymap("n", "<leader>,", ":set invlist<CR>")
+keymap("n", "<leader>,", ":set invlist<CR>", { desc = "Toggle hidden characters" })
 
 -- Open file explorer
-keymap("n", "<leader>o", ":Ex<CR>")
+keymap("n", "<leader>o", ":Ex<CR>", { desc = "Open file explorer" })
 
 -- "Very magic" regexes by default
-keymap("n", "?", "?\\v")
-keymap("n", "/", "/\\v")
-keymap("c", "%s/", "%sm/")
+keymap("n", "?", "?\\v", { desc = "Search backward (very magic)" })
+keymap("n", "/", "/\\v", { desc = "Search forward (very magic)" })
+keymap("c", "%s/", "%sm/", { desc = "Substitute (very magic)" })
 
 -- ============================================================================
 -- EDITING
 -- ============================================================================
 
 -- Keep selection while indenting
-keymap("v", "<", "<gv")
-keymap("v", ">", ">gv")
+keymap("v", "<", "<gv", { desc = "Indent left and reselect" })
+keymap("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- ============================================================================
 -- SPECIAL KEYS
 -- ============================================================================
 
 -- Disable F1
-keymap("n", "<F1>", "<Nop>")
-keymap("i", "<F1>", "<Nop>")
+keymap("n", "<F1>", "<Nop>", { desc = "Disable F1" })
+keymap("i", "<F1>", "<Nop>", { desc = "Disable F1" })
 
 -- ============================================================================
 -- DEVELOPER TOOLS
 -- ============================================================================
 
 -- Source File
-keymap("n", "<leader>s", ":source <CR>")
+keymap("n", "<leader>s", ":source <CR>", { desc = "Source current file" })
 
 -- Test Files
-keymap("n", "<leader>t", "<cmd>PlenaryBustedFile %<CR>")
+keymap("n", "<leader>t", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run Plenary tests" })
 
 -- Toggle Inlay Hints
 keymap("n", "<leader>h", function()
@@ -60,4 +55,4 @@ keymap("n", "<leader>h", function()
   else
     vim.notify("Inlay hints enabled", vim.log.levels.INFO)
   end
-end)
+end, { desc = "Toggle inlay hints" })
