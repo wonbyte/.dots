@@ -1,3 +1,11 @@
+# Clean up stale universal variables from previous config
+set -eU DOTFILES
+set -eU LANG
+set -eU LC_ALL
+set -eU GOPATH
+set -eU fish_greeting
+set -eU fish_user_paths
+
 # Exports
 set -gx DOTFILES $HOME/.dots
 set -gx LANG en_US.UTF-8
