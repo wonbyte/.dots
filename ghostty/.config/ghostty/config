@@ -8,6 +8,7 @@ font-style-bold = false
 font-style-bold-italic = false
 font-synthetic-style = false
 font-size = 14
+macos-option-as-alt = true
 macos-titlebar-proxy-icon = hidden
 theme = Gruvbox Dark
 quit-after-last-window-closed = true
