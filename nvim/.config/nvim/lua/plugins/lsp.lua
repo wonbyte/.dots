@@ -260,9 +260,9 @@ return {
           },
         }
 
-        vim.tbl_map(function(km)
+        for _, km in ipairs(keymaps) do
           vim.keymap.set(km[1], km[2], km[3], { buffer = bufnr, desc = km[4] })
-        end, keymaps)
+        end
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
