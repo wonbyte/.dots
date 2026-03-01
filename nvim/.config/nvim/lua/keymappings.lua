@@ -40,8 +40,8 @@ keymap("i", "<F1>", "<Nop>", { desc = "Disable F1" })
 -- DEVELOPER TOOLS
 -- ============================================================================
 
--- Source File
-keymap("n", "<leader>s", ":source <CR>", { desc = "Source current file" })
+-- Source current file
+keymap("n", "<leader>s", ":source %<CR>", { desc = "Source current file" })
 
 -- Test Files
 keymap("n", "<leader>t", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run Plenary tests" })
