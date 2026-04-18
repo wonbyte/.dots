@@ -1,0 +1,14 @@
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+cursor-style-blink = true
+font-family = Iosevka Charon Mono
+font-style-bold = false
+font-style-bold-italic = false
+font-synthetic-style = false
+font-size = 14
+macos-option-as-alt = true
+macos-titlebar-proxy-icon = hidden
+theme = Gruvbox Dark
+quit-after-last-window-closed = true
+window-padding-balance = true
