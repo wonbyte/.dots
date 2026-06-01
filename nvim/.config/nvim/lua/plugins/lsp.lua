@@ -33,6 +33,32 @@ local servers = {
       },
     },
   },
+  -- Python
+  pylsp = {
+    cmd = { "pylsp" },
+    filetypes = { "python" },
+    root_markers = {
+      "pyproject.toml",
+      "setup.cfg",
+      "setup.py",
+      "requirements.txt",
+      ".git",
+    },
+    settings = {
+      pylsp = {
+        plugins = {
+          -- Disable linters/formatters in favour of external tools (e.g. ruff, black via conform)
+          pyflakes = { enabled = false },
+          pycodestyle = { enabled = false },
+          autopep8 = { enabled = false },
+          yapf = { enabled = false },
+          mccabe = { enabled = false },
+          pylsp_mypy = { enabled = true },
+          pylsp_ruff = { enabled = true },
+        },
+      },
+    },
+  },
   rust_analyzer = {
     cmd = { "rust-analyzer" },
     filetypes = { "rust" },
@@ -42,6 +68,23 @@ local servers = {
         cargo = { allFeatures = true },
         completion = { callable = { snippets = "add_parentheses" } },
       },
+    },
+  },
+  -- TypeScript / JavaScript
+  ts_ls = {
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+    root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+    settings = {
+      typescript = { inlayHints = ts_inlay_hints },
+      javascript = { inlayHints = ts_inlay_hints },
     },
   },
 }
