@@ -13,4 +13,7 @@ require("blink.cmp").setup({
     },
   },
   fuzzy = { implementation = "prefer_rust" },
+  enabled = function()
+    return vim.b.completion == true -- Only enable if explicitly set to true
+  end,
 })

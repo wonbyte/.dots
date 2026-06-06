@@ -54,11 +54,11 @@ end, { desc = "Toggle inlay hints" })
 
 -- Toggle Autocomplete
 keymap("n", "<leader>ac", function()
-  if vim.b.completion == false then
-    vim.b.completion = nil -- Reset to default behavior
-    vim.notify("Autocomplete enabled", vim.log.levels.INFO)
-  else
-    vim.b.completion = false -- Disable
+  if vim.b.completion == true then
+    vim.b.completion = false
     vim.notify("Autocomplete disabled", vim.log.levels.INFO)
+  else
+    vim.b.completion = true
+    vim.notify("Autocomplete enabled", vim.log.levels.INFO)
   end
 end, { desc = "Toggle autocomplete" })
