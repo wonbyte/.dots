@@ -104,7 +104,7 @@ local function on_lsp_attach(args)
   if client then
     -- Enable inlay hints if supported
     if client:supports_method("textDocument/inlayHint", bufnr) then
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
     end
 
     -- Disable ts_ls formatting in favour of prettier via conform
