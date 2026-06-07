@@ -9,6 +9,10 @@ format = """
 $username\
 $hostname\
 $directory\
+$python\
+$nodejs\
+$rust\
+$lua\
 $git_branch\
 $git_state\
 $git_status\
@@ -26,6 +30,30 @@ read_only = " "
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
+
+[python]
+symbol = "🐍 "
+detect_extensions = ["py"]
+detect_files = [".python-version", "Pipfile", "__pycache__", "pyproject.toml", "requirements.txt", "setup.py", "tox.ini", "uv.lock"]
+detect_folders = ["__pycache__", ".venv", "venv"]
+
+[nodejs]
+symbol = "⬢ "
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = ["package.json", ".node-version", "node_modules"]
+detect_folders = ["node_modules"]
+
+[rust]
+symbol = "🦀 "
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml", "Cargo.lock"]
+detect_folders = []
+
+[lua]
+symbol = "🌙 "
+detect_extensions = ["lua"]
+detect_files = [".lua-version"]
+detect_folders = []
 
 [git_branch]
 format = "[$branch]($style) "

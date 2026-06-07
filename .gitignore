@@ -2,3 +2,6 @@
 fisher.fish
 fish_plugins
 fish_variables
+
+# uv
+**/.local/bin/python*
