@@ -1,20 +1,27 @@
 require("mason").setup({})
 
--- Language servers used in plugins/lsp.lua (Mason package names)
+-- Language servers used in plugins/lsp.lua, by Mason package name.
+-- Value: the tool Mason needs on PATH to install the package (false = none).
+-- A package is skipped while its tool is missing, so Mason does not fail and
+-- retry on every start.
 -- tsgo is deliberately absent: its cmd resolves TypeScript 7+ from each
 -- project's own node_modules.
 local ensure_installed = {
-  "gopls",
-  "lua-language-server",
-  "roslyn-language-server", -- roslyn_ls (C#); needs `dotnet`
-  "rust-analyzer",
+  ["gopls"] = "go",
+  ["lua-language-server"] = false,
+  ["roslyn-language-server"] = "dotnet", -- roslyn_ls (C#)
+  ["rust-analyzer"] = false,
 }
 
 local registry = require("mason-registry")
 
-local missing = vim.tbl_filter(function(name)
-  return not registry.is_installed(name)
-end, ensure_installed)
+local missing = {}
+for name, tool in pairs(ensure_installed) do
+  local can_install = not tool or vim.fn.executable(tool) == 1
+  if can_install and not registry.is_installed(name) then
+    missing[#missing + 1] = name
+  end
+end
 
 -- Only touch the network when something is missing
 if #missing > 0 then
