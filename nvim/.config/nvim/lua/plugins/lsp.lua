@@ -307,12 +307,6 @@ if not vim.env.DOTNET_ROOT and vim.uv.fs_stat(brew_dotnet) then
   vim.env.DOTNET_ROOT = brew_dotnet
 end
 
--- The server is built for one .NET major version (net10.0 today), but
--- Homebrew installs only the newest runtime. "Major" lets it start on a newer
--- runtime when its own is missing. Set on vim.env, not cmd_env, because the
--- config also runs the server once with --version before it starts.
-vim.env.DOTNET_ROLL_FORWARD = vim.env.DOTNET_ROLL_FORWARD or "Major"
-
 local lspconfig = vim.pack.get({ "nvim-lspconfig" }, { info = false })[1]
 local roslyn_path = lspconfig and (lspconfig.path .. "/lsp/roslyn_ls.lua")
 if roslyn_path and vim.uv.fs_stat(roslyn_path) then
