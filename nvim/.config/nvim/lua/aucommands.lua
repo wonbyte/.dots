@@ -32,7 +32,9 @@ autocmd("TextYankPost", {
   group = augroup("YankHighlight", { clear = true }),
   desc = "Highlight yanked text briefly",
   callback = function()
-    vim.hl.on_yank({ higroup = "IncSearch", timeout = 100 })
+    -- Neovim 0.13 renames on_yank() to hl_op(); use whichever exists
+    local highlight = vim.hl.hl_op or vim.hl.on_yank
+    highlight({ higroup = "IncSearch", timeout = 100 })
   end,
 })
 
