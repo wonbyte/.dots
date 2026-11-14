@@ -6,6 +6,12 @@ set -gx DOTFILES "$HOME/.dots"
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+# Homebrew's .NET is not in the default location, so tools installed with
+# `dotnet tool` (and Mason's Roslyn server) need this to find the runtime
+if test -d /opt/homebrew/opt/dotnet/libexec
+    set -gx DOTNET_ROOT /opt/homebrew/opt/dotnet/libexec
+end
+
 # Disable greeting
 set -g fish_greeting ""
 

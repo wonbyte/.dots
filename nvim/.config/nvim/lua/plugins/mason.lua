@@ -6,6 +6,7 @@ require("mason").setup({})
 local ensure_installed = {
   "gopls",
   "lua-language-server",
+  "roslyn-language-server", -- roslyn_ls (C#); needs `dotnet`
   "rust-analyzer",
 }
 

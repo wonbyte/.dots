@@ -26,6 +26,10 @@ Language servers come from [Mason](https://github.com/mason-org/mason.nvim), not
 Homebrew. Neovim installs the missing ones by itself on start (see
 `nvim/.config/nvim/lua/plugins/mason.lua`).
 
+C# uses the Roslyn server with the config from
+[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). It needs `dotnet`
+(in the `Brewfile`).
+
 `prettier` is per repo (`npm install --save-dev prettier`). Neovim uses the copy in
 `node_modules` when it exists.
 

@@ -294,6 +294,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = on_lsp_attach,
 })
 
+-- C# (Roslyn). The server needs a lot of custom client code, so use the
+-- maintained config from nvim-lspconfig instead of a copy. See init.lua for
+-- why the file is read from disk.
+local lspconfig = vim.pack.get({ "nvim-lspconfig" })[1]
+local roslyn_path = lspconfig and (lspconfig.path .. "/lsp/roslyn_ls.lua")
+if roslyn_path and vim.uv.fs_stat(roslyn_path) then
+  servers.roslyn_ls = dofile(roslyn_path)
+end
+
 for server_name, server_config in pairs(servers) do
   vim.lsp.config(server_name, server_config)
   vim.lsp.enable(server_name)

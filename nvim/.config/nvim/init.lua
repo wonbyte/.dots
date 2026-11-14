@@ -64,6 +64,14 @@ vim.pack.add({
   "https://github.com/windwp/nvim-autopairs",
 })
 
+-- nvim-lspconfig is installed only for its Roslyn (C#) config, which
+-- plugins/lsp.lua reads from disk. The no-op `load` keeps the plugin off
+-- runtimepath, so its defaults for other servers never mix with ours.
+vim.pack.add(
+  { "https://github.com/neovim/nvim-lspconfig" },
+  { load = function() end }
+)
+
 -- Build once if the plugin is present but was never compiled
 local fzf_native = vim.pack.get({ "telescope-fzf-native.nvim" })[1]
 if fzf_native and not vim.uv.fs_stat(fzf_native.path .. "/build/libfzf.so") then

@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Install missing parsers (already-installed ones are skipped)
 require("nvim-treesitter").install({
   "bash",
+  "c_sharp",
   "css",
   "dockerfile",
   "fish",
