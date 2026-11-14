@@ -1,3 +1,5 @@
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
 # .NET CLI
 brew "dotnet"
 # Simple, fast and user-friendly alternative to find
