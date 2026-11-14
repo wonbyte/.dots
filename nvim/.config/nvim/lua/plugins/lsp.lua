@@ -297,6 +297,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- C# (Roslyn). The server needs a lot of custom client code, so use the
 -- maintained config from nvim-lspconfig instead of a copy. See init.lua for
 -- why the file is read from disk.
+--
+-- Homebrew's .NET is outside the default search path. Without DOTNET_ROOT the
+-- server's launcher cannot find the runtime and quits with exit code 131.
+-- config.fish sets it too; this covers Neovim started from a shell (or a
+-- long-running tmux server) that does not have it yet.
+local brew_dotnet = "/opt/homebrew/opt/dotnet/libexec"
+if not vim.env.DOTNET_ROOT and vim.uv.fs_stat(brew_dotnet) then
+  vim.env.DOTNET_ROOT = brew_dotnet
+end
+
 local lspconfig = vim.pack.get({ "nvim-lspconfig" }, { info = false })[1]
 local roslyn_path = lspconfig and (lspconfig.path .. "/lsp/roslyn_ls.lua")
 if roslyn_path and vim.uv.fs_stat(roslyn_path) then
