@@ -73,7 +73,9 @@ vim.pack.add(
 )
 
 -- Build once if the plugin is present but was never compiled
-local fzf_native = vim.pack.get({ "telescope-fzf-native.nvim" })[1]
+-- (info = false: only the path is needed, so skip vim.pack's git queries)
+local fzf_native =
+  vim.pack.get({ "telescope-fzf-native.nvim" }, { info = false })[1]
 if fzf_native and not vim.uv.fs_stat(fzf_native.path .. "/build/libfzf.so") then
   build_fzf_native(fzf_native.path)
 end
