@@ -22,16 +22,22 @@ local function build_fzf_native(path)
   end
 end
 
--- Rebuild after every install/update (must exist before vim.pack.add)
+-- Plugin hooks (must exist before vim.pack.add)
 vim.api.nvim_create_autocmd("PackChanged", {
   group = vim.api.nvim_create_augroup("PackBuild", { clear = true }),
   callback = function(ev)
-    local kind = ev.data.kind
+    local name, kind = ev.data.spec.name, ev.data.kind
     if
-      ev.data.spec.name == "telescope-fzf-native.nvim"
+      name == "telescope-fzf-native.nvim"
       and (kind == "install" or kind == "update")
     then
+      -- Rebuild after every install/update
       build_fzf_native(ev.data.path)
+    elseif name == "nvim-treesitter" and kind == "update" then
+      -- Each plugin version expects specific parser versions, so bring the
+      -- installed parsers along (same as :TSUpdate). Stale parsers break
+      -- their queries.
+      require("nvim-treesitter").update()
     end
   end,
 })
