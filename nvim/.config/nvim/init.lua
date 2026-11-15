@@ -33,11 +33,6 @@ vim.api.nvim_create_autocmd("PackChanged", {
     then
       -- Rebuild after every install/update
       build_fzf_native(ev.data.path)
-    elseif name == "nvim-treesitter" and kind == "update" then
-      -- Each plugin version expects specific parser versions, so bring the
-      -- installed parsers along (same as :TSUpdate). Stale parsers break
-      -- their queries.
-      require("nvim-treesitter").update()
     end
   end,
 })
