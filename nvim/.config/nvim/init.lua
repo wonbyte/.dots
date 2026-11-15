@@ -53,7 +53,12 @@ vim.pack.add({
 
   -- LSP & Completion
   "https://github.com/mason-org/mason.nvim",
-  { src = "https://github.com/saghen/blink.cmp", version = "v1" },
+  -- Follow release tags, not the v1 branch: blink only downloads its
+  -- prebuilt fuzzy matcher when the checkout is exactly on a tag.
+  {
+    src = "https://github.com/saghen/blink.cmp",
+    version = vim.version.range("1.*"),
+  },
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/folke/lazydev.nvim",
 
