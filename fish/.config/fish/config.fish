@@ -12,6 +12,9 @@ if test -d /opt/homebrew/opt/dotnet/libexec
     set -gx DOTNET_ROOT /opt/homebrew/opt/dotnet/libexec
 end
 
+# Keep Go's workspace hidden (default is ~/go)
+set -gx GOPATH $HOME/.go
+
 # Disable greeting
 set -g fish_greeting ""
 
@@ -20,7 +23,7 @@ set -g fish_greeting ""
 set -l paths \
     $HOME/.docker/bin \
     $HOME/.dotnet/tools \
-    $HOME/go/bin \
+    $GOPATH/bin \
     $HOME/.cargo/bin \
     /opt/homebrew/bin \
     $HOME/.local/bin
